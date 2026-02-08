@@ -2,4 +2,66 @@
 
 body {
     background-color: skyblue;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 65px;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 60px;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 35px;
+    font-weight: bold;
+}
+
+p {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+/* BUTTON STYLES */
+.btn1 {
+    background-color: #165B8A;
+    color: #FFFDF5;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 100%;
+}
+
+.btn2 {
+    background-color: #FFD789;
+    color: #563326;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 100%;
+}
+
+.btn3 {
+    background-color: #ffffff1e;
+    color: #563326;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    border: 1px solid #563326;
+    border-radius: 100%;
 }
