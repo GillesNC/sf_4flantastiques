@@ -1,0 +1,54 @@
+services:
+    server_sf_project:
+        container_name: server_sf_project
+        image: 'nginx:1.25-alpine3.18'
+        working_dir: /www
+        volumes:
+            - './symfony:/www/symfony'
+            - './.docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro'
+        ports:
+            - '8080:80'
+
+    php_sf_project:
+        container_name: php_sf_project
+        build: ./.docker/php
+        working_dir: /www/symfony
+        user: "1000"
+        volumes:
+            - './symfony/:/www/symfony'
+            - './.docker/php/php-ini-overrides.ini:/etc/php/8.2/fpm/conf.d/99-overrides.ini'
+
+    mysql_sf_project:
+        image: mysql:8.0
+        container_name: mysql_sf_project
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: 4flantastiques
+            MYSQL_USER: Gadmin
+            MYSQL_PASSWORD: test1234
+        ports:
+            - "3306:3306"
+        volumes:
+            - mysql_sf_project:/var/lib/mysql
+
+    mongo_sf_project:
+        image: mongo:8
+        container_name: mongo_sf_project
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: Gadmin
+            MONGO_INITDB_ROOT_PASSWORD: test1234
+        ports:
+            -   "27017:27017"
+        volumes:
+            -   mongo_sf_project:/data/db
+
+    mailhog:
+        image: mailhog/mailhog:latest
+        container_name: mailhog
+        ports:
+            - "1025:1025"
+            - "8025:8025"
+
+volumes:
+    mysql_sf_project:
+    mongo_sf_project:
