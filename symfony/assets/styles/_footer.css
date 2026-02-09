@@ -1,0 +1,12 @@
+.newsletter {
+    background-image: url('../images/footer.svg');
+    background-size: cover;
+    background-position: bottom;
+    color: var(--color-light);
+    min-height: 400px;
+    margin-bottom: -80px;
+}
+
+.info {
+    padding-top: 80px;
+}
