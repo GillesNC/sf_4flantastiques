@@ -1,0 +1,14 @@
+.mascotte{
+    background-image: url('../images/Shape.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+}
+
+.discover {
+    background-image: url('../images/Image12.webp');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}

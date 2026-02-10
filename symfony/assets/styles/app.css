@@ -50,7 +50,7 @@
     .btn-primary {
         background-color: var(--color-tertiary);
         color: var(--color-light);
-        padding: 10px 20px;
+        padding: 10px;
         text-align: center;
         text-decoration: none;
         font-size: var(--font-small);
@@ -63,27 +63,27 @@
     .btn-secondary {
         background-color: var(--color-primary);
         color: var(--color-secondary);
-        padding: 10px 20px;
+        padding: 10px;
         text-align: center;
         text-decoration: none;
         font-size: var(--font-small);
         font-weight: bold;
         cursor: pointer;
         border: none;
-        border-radius: 100%;
+        border-radius: 100px;
     }
 
     .btn-outline {
         background-color: var(--color-light);
         color: var(--color-secondary);
-        padding: 10px 20px;
+        padding: 10px;
         text-align: center;
         text-decoration: none;
         font-size: var(--font-small);
         font-weight: bold;
         cursor: pointer;
         border: 1px solid var(--color-secondary);
-        border-radius: 100%;
+        border-radius: 100px;
     }
 }
 
