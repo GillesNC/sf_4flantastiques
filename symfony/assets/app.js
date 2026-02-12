@@ -6,7 +6,13 @@ import './stimulus_bootstrap.js';
  * which should already be in your base.html.twig.
  */
 import './styles/app.css';
+
+/* PAGE CSS */
 import './styles/home.css';
+import './styles/register.css';
+import './styles/login.css'
+
+/* COMPONENTS CSS */
 import './styles/_header.css';
 import './styles/_footer.css';
 

@@ -1,0 +1,35 @@
+#registration_form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+#registration_form > div {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: var(--font-medium);
+    font-weight: bold;
+    color: var(--color-dark);
+}
+
+.form-input {
+    border: 1px solid var(--color-secondary);
+    border-radius: 100px;
+    padding: 10px;
+    background-color: var(--color-primary-50);
+}
+
+.form-input-bio {
+    border: 1px solid var(--color-secondary);
+    background-color: var(--color-primary-50);
+    border-radius: 10px;
+    height: 250px;
+    padding: 10px;
+}
+
+input:checked {
+    background-color: red !important;
+}

@@ -12,10 +12,14 @@
             <a href="#" class="font-semibold text-dark">Qui sommes nous ?</a>
             <a href="#" class="font-semibold text-dark">Mag</a>
         </div>
-
-        <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="{{ path('register') }}" class="font-semibold btn-primary text-light">Devenir flanneur</a>
-            <a href="{{ path('app_login') }}" class="ml-4 flex items-center text-secondary text-3xl"><i class="fa-solid fa-circle-user"></i></a>
+        <div class="hidden gap-4 lg:flex lg:flex-1 lg:justify-end">
+            {% if app.user %}
+                <a href="{{ path('home') }}" class="font-semibold btn-primary text-light px-5">{{ app.user.pseudo }}</a>
+                <a href="{{ path('app_logout') }}" class="font-semibold btn-outline text-secondary">Déconnexion</a>
+            {% else %}
+                <a href="{{ path('register') }}" class="font-semibold btn-primary text-light">Devenir flanneur</a>
+                <a href="{{ path('app_login') }}" class="ml-4 flex items-center text-secondary text-3xl"><i class="fa-solid fa-circle-user"></i></a>
+            {% endif %}
         </div>
 
         {# BURGER MENU #}
@@ -49,11 +53,13 @@
                 <a href="#" class="-mx-3 block  px-3 py-2font-semibold text-dark ">Mag</a>
             </div>
             <div class="py-6 flex flex-col gap-4">
-                <a href="{{ path('register') }}" class="font-semibold btn-primary text-light text-center">Devenir flanneur</a>
-                <a href="{{ path('app_login') }}" class="-mx-3 flex items-center gap-x-3 px-3 py-2.5 font-semibold text-dark hover:bg-secondary/10">
-                    <i class="fa-solid fa-circle-user text-2xl text-secondary"></i>
-                    Mon compte
-                </a>
+                {% if app.user %}
+                    <a href="{{ path('home') }}" class="font-semibold btn-primary text-light px-5">{{ app.user.pseudo }}</a>
+                    <a href="{{ path('app_logout') }}" class="font-semibold btn-outline text-secondary">Déconnexion</a>
+                {% else %}
+                    <a href="{{ path('register') }}" class="font-semibold btn-primary text-light">Devenir flanneur</a>
+                    <a href="{{ path('app_login') }}" class="ml-4 flex items-center text-secondary text-3xl"><i class="fa-solid fa-circle-user"></i></a>
+                {% endif %}
             </div>
         </div>
     </div>

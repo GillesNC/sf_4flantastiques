@@ -7,9 +7,13 @@
     --font-large: 65px;
 
     --color-primary: #fff3cd;
+    --color-primary-50: #fff3cd50;
     --color-secondary: #563326;
+    --color-secondary-50: #56332650;
     --color-tertiary: #165b8a;
+    --color-tertiary-50: #165b8a50;
     --color-dark: #222222;
+    --color-dark-50: #22222250;
     --color-light: #fffdf5;
 }
 
