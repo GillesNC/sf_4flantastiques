@@ -1,38 +1,58 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Connexion{% endblock %}
 
 {% block body %}
-    <form method="post">
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
+    <div class="breadscrumb max-w-7xl mx-auto py-10 gap-8 lg:mx-auto">
+        <p>Mon fil d'ariane</p>
+    </div>
+    <section
+        class="grid grid-cols-2 gap-4 max-w-7xl mx-auto">
+        <div class="form flex flex-col p-10 mb-50 gap-8 lg:mx-auto border-1 border-solid border-secondary rounded-xl">
+            <h1 class="text-secondary">J’ai déjà un compte </h1>
+            <form method="post" class="flex flex-col gap-4">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
 
-        {% if app.user %}
-            <div class="mb-3">
-                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ logout_path() }}">Logout</a>
-            </div>
-        {% endif %}
+                {% if app.user %}
+                    <div class="mb-3">
+                        You are logged in as {{ app.user.userIdentifier }}, <a href="{{ logout_path() }}">Logout</a>
+                    </div>
+                {% endif %}
+                <label for="username">Adresse e-mail*</label>
+                <input type="email" value="{{ last_username }}" name="_username" id="username"
+                       class="form-control form-input"
+                       autocomplete="email" required autofocus placeholder="Votre adresse email">
+                <label for="password">Mot de passe*</label>
+                <input type="password" name="_password" id="password" class="form-control form-input"
+                       autocomplete="current-password"
+                       required placeholder="Votre mot de passe">
+                <input type="hidden" name="_csrf_token" data-controller="csrf-protection"
+                       value="{{ csrf_token('authenticate') }}">
 
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="username">Email</label>
-        <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
-        <label for="password">Password</label>
-        <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
-        <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
+                {#            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality. #}
+                {#            See https://symfony.com/doc/current/security/remember_me.html #}
 
-        {#
-            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-            See https://symfony.com/doc/current/security/remember_me.html
+                <div class="flex checkbox mb-3 justify-between">
+                    <div>
+                        <input type="checkbox" name="_remember_me" id="_remember_me">
+                        <label for="_remember_me" class="rememberme">Se souvenir de moi</label>
+                    </div>
+                    <a href="#" class="text-secondary font-bold text-sm">Mot de passe oublié ?</a>
+                </div>
 
-            <div class="checkbox mb-3">
-                <input type="checkbox" name="_remember_me" id="_remember_me">
-                <label for="_remember_me">Remember me</label>
-            </div>
-        #}
+                <button class="btn btn-lg btn-primary" type="submit">
+                    Connexion
+                </button>
+            </form>
+        </div>
 
-        <button class="btn btn-lg btn-primary" type="submit">
-            Sign in
-        </button>
-    </form>
+        <div class="flex flex-col max-w-7xl mx-auto p-10 mb-50 gap-8 rounded-xl lg:mx-auto bg-primary">
+            <h2 class="text-secondary">Vous n'êtes pas encore enregistré ?</h2>
+            <p>N'attendez plus et rejoingnez la team des flanneurs ! Participez et proposez vos meilleurs flans.</p>
+            <a href="{{ path('register') }}" class="font-semibold btn-primary text-light">Créer votre compte</a>
+        </div>
+    </section>
+
 {% endblock %}

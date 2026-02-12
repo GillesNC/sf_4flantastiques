@@ -41,15 +41,20 @@ class RegistrationFormType extends AbstractType
                 'required' => true,
             ])
             ->add('bio', TextareaType::class, [
-                'attr' => ['class' => 'form-input', 'placeholder' => 'Votre petite présentation  en quelques mots...'],
+                'attr' => ['class' => 'form-input-bio', 'placeholder' => 'Votre petite présentation  en quelques mots...'],
                 'label' => 'Présentation',
                 'required' => false,
             ])
-
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'first_options'  => ['label' => 'Password'],
-                'second_options' => ['label' => 'Confirm Password'],
+                'first_options'  => [
+                    'attr' => ['class' => 'form-input', 'placeholder' => 'Mot de passe'],
+                    'label' => 'Mot de passe*',
+                ],
+                'second_options' => [
+                    'attr' => ['class' => 'form-input', 'placeholder' => 'Confirmer le mot de passe'],
+                    'label' => 'Confirmer le mot de passe*',
+                ],
                 'invalid_message' => 'fos_user.password.mismatch',
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
@@ -66,12 +71,12 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
-                'label' => 'En créant votre compte vous acceptez les Conditions Générales de vente du site.*',
                 'constraints' => [
                     new IsTrue(
                         message: 'En créant votre compte vous acceptez les Conditions Générales de vente du site. *',
                     ),
                 ],
+                'label' => 'En créant votre compte vous acceptez les Conditions Générales de vente du site.*',
             ])
         ;
     }
