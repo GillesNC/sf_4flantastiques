@@ -14,17 +14,20 @@
         </div>
         <div class="hidden gap-4 lg:flex lg:flex-1 lg:justify-end">
             {% if app.user %}
-                <a href="{{ path('home') }}" class="font-semibold btn-primary text-light px-5">{{ app.user.pseudo }}</a>
+                <a href="{{ path('profile_show', {'id': app.user.id}) }}"
+                   class="font-semibold btn-primary text-light px-5">{{ app.user.pseudo }}</a>
                 <a href="{{ path('app_logout') }}" class="font-semibold btn-outline text-secondary">Déconnexion</a>
             {% else %}
                 <a href="{{ path('register') }}" class="font-semibold btn-primary text-light">Devenir flanneur</a>
-                <a href="{{ path('app_login') }}" class="ml-4 flex items-center text-secondary text-3xl"><i class="fa-solid fa-circle-user"></i></a>
+                <a href="{{ path('app_login') }}" class="ml-4 flex items-center text-secondary text-3xl"><i
+                        class="fa-solid fa-circle-user"></i></a>
             {% endif %}
         </div>
 
         {# BURGER MENU #}
         <div class="flex lg:hidden">
-            <button type="button" onclick="document.getElementById('mobile-menu').showModal()" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-secondary">
+            <button type="button" onclick="document.getElementById('mobile-menu').showModal()"
+                    class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-secondary">
                 <span class="sr-only">Ouvrir le menu</span>
                 <i class="fa-solid fa-bars text-2xl"></i>
             </button>
@@ -33,12 +36,14 @@
 </header>
 
 {# MENU MOBILE #}
-<dialog id="mobile-menu" class="lg:hidden m-0 h-full max-h-full w-full max-w-sm fixed inset-y-0 right-0 z-50 overflow-y-auto bg-primary p-6 backdrop:bg-black/50">
+<dialog id="mobile-menu"
+        class="lg:hidden m-0 h-full max-h-full w-full max-w-sm fixed inset-y-0 right-0 z-50 overflow-y-auto bg-primary p-6 backdrop:bg-black/50">
     <div class="flex items-center justify-between">
         <a href="{{ path('home') }}" class="flex font-bold items-center gap-x-2 text-secondary">
             4 Flantastiques
         </a>
-        <button type="button" onclick="document.getElementById('mobile-menu').close()" class="-m-2.5 rounded-md p-2.5 text-secondary">
+        <button type="button" onclick="document.getElementById('mobile-menu').close()"
+                class="-m-2.5 rounded-md p-2.5 text-secondary">
             <span class="sr-only">Fermer le menu</span>
             <i class="fa-solid fa-xmark text-2xl"></i>
         </button>
@@ -54,11 +59,13 @@
             </div>
             <div class="py-6 flex flex-col gap-4">
                 {% if app.user %}
-                    <a href="{{ path('home') }}" class="font-semibold btn-primary text-light px-5">{{ app.user.pseudo }}</a>
+                    <a href="{{ path('home') }}"
+                       class="font-semibold btn-primary text-light px-5">{{ app.user.pseudo }}</a>
                     <a href="{{ path('app_logout') }}" class="font-semibold btn-outline text-secondary">Déconnexion</a>
                 {% else %}
                     <a href="{{ path('register') }}" class="font-semibold btn-primary text-light">Devenir flanneur</a>
-                    <a href="{{ path('app_login') }}" class="ml-4 flex items-center text-secondary text-3xl"><i class="fa-solid fa-circle-user"></i></a>
+                    <a href="{{ path('app_login') }}" class="ml-4 flex items-center text-secondary text-3xl"><i
+                            class="fa-solid fa-circle-user"></i></a>
                 {% endif %}
             </div>
         </div>

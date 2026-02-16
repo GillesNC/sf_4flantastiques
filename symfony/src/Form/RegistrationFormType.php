@@ -55,7 +55,7 @@ class RegistrationFormType extends AbstractType
                     'attr' => ['class' => 'form-input', 'placeholder' => 'Confirmer le mot de passe'],
                     'label' => 'Confirmer le mot de passe*',
                 ],
-                'invalid_message' => 'fos_user.password.mismatch',
+                'invalid_message' => 'Le mot de passe et sa confirmation doivent être identiques.',
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [

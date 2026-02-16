@@ -11,6 +11,7 @@ import './styles/app.css';
 import './styles/home.css';
 import './styles/register.css';
 import './styles/login.css'
+import './styles/profile.css'
 
 /* COMPONENTS CSS */
 import './styles/_header.css';

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Compte {{ user.pseudo }}{% endblock %}
+
+{% block body %}
+    {% set current = app.request.attributes.get('_route') %}
+    <section class="hero flex flex-col max-w-7xl mx-auto m-25 gap-8">
+        <h1 class="text-secondary">Détails du compte</h1>
+        <div class="dashboard grid grid-cols-2 max-w-7xl mx-auto gap-10 mb-50">
+            <div class="flex flex-col gap-4">
+                <h3 class="text-secondary">Tableau de bord</h3>
+                <div class="panel flex flex-col px-6 py-6 border-1 border-solid rounded border-secondary rounded-xl">
+                    <ul class="flex flex-col gap-4">
+                        <li><a href="{{ path('profile_edit', {'id': app.user.id}) }}" class="panel-btn-active">Mon
+                                profil</a></li>
+                        <li><a href="{{ path('home') }}" class="panel-btn">Mes avis</a></li>
+                        <li><a href="{{ path('home') }}" class="panel-btn">Mes flans soumis</a></li>
+                        <li><a href="{{ path('home') }}" class="panel-btn">Mes flans favoris</a></li>
+                        <li><a href="{{ path('home') }}" class="panel-btn">Charte UGC</a></li>
+                        <li><a href="{{ path('app_logout') }}" class="panel-btn">Déconnexion</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="form flex flex-col max-w-7xl mx-auto p-10 mb-50 gap-8 border-1 border-solid border-secondary rounded-xl lg:mx-auto">
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <button class="btn btn-primary w-100 mt-4">Sauvegarder mes modifications</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </section>
+{% endblock %}
