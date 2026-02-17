@@ -33,7 +33,7 @@ class ProfileFormType extends AbstractType
                 'type' => PasswordType::class,
                 'first_options'  => [
                     'attr' => ['class' => 'form-input', 'placeholder' => '*******************'],
-                    'label' => 'Mot de passe actuel',
+                    'label' => 'Nouveau mot de passe',
                     'required' => false,
                 ],
                 'second_options' => [
