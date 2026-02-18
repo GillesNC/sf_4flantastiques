@@ -3,10 +3,9 @@
 {% block title %}Devenir flanneur{% endblock %}
 
 {% block body %}
-    <div class="breadscrumb max-w-7xl mx-auto py-10 gap-8 lg:mx-auto">
-        <p>Mon fil d'ariane</p>
-    </div>
-    <section class="form flex flex-col max-w-7xl mx-auto p-10 mb-50 gap-8 border-1 border-solid border-secondary rounded-xl lg:mx-auto">
+    {{ include('components/_breadscrumb.html.twig', {centered: true}) }}
+    <section
+        class="form flex flex-col max-w-7xl mx-auto p-10 mb-50 gap-8 border-1 border-solid border-secondary rounded-xl lg:mx-auto">
         <h1 class="text-secondary">Créer mon compte</h1>
 
         {{ form_errors(registrationForm) }}
