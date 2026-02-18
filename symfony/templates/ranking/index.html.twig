@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}4 Flantastiques - Classement{% endblock %}
+
+{% block body %}
+    <section class="hero flex max-w-7xl mx-auto m-25 gap-8">
+        <div class="flex flex-col justify-center gap-4">
+            {{ include('components/_breadscrumb.html.twig') }}
+            <h1 class="text-secondary">Classement des meilleurs flans de France</h1>
+            <div class="flex gap-4">
+                <a href="{{ path('register') }}" class="btn-primary">Devenir flanneur</a>
+            </div>
+        </div>
+        <div class="mascotte">
+            <img src="{{ asset('images/Mascotte_classement.svg') }}" alt="Mascotte classement 4 Flantastiques">
+        </div>
+    </section>
+
+    <section class="flans max-w-7xl mx-auto m-50">
+        <h2 class="text-secondary text-center mb-8">NTop 50 des meilleurs flans</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 h-300 bg-secondary"></div>
+    </section>
+
+    <section class="blocSEO flex flex-col max-w-7xl mx-auto m-25 gap-8">
+        <h2 class="text-secondary">Titre du bloc SEO</h2>
+        <p>Reprehenderit esse labore id veniam ut veniam non ex adipisicing amet ullamco dolor proident. Reprehenderit esse labore id veniam ut veniam non ex adipisicing amet ullamco dolor proident. Reprehenderit esse labore id veniam ut veniam non ex adipisicing amet ullamco dolor proident.Reprehenderit esse labore id veniam ut veniam non ex adipisicing amet ullamco dolor proident. Reprehenderit esse labore id veniam ut veniam non ex adipisicing amet ullamco dolor proident. Reprehenderit esse labore id veniam ut veniam non ex adipisicing amet ullamco dolor proident.Reprehenderit esse labore id veniam ut veniam non ex adipisicing amet ullamco dolor proident. Reprehenderit esse labore id veniam ut veniam non ex adipisicing amet ullamco dolor proident. Reprehenderit esse labore id veniam ut veniam non ex adipisicing amet ullamco dolor proident.Reprehenderit esse labore id veniam ut veniam non ex adipisicing amet ullamco dolor proident. Reprehenderit esse labore id veniam ut veniam non ex adipisicing amet ullamco dolor proident. Reprehenderit esse labore id veniam ut veniam non ex adipisicing amet ullamco dolor proident. Reprehenderit esse labore id veniam ut veniam non ex adipisicing amet ullamco dolor proident. Reprehenderit esse labore id veniam ut veniam non ex adipisicing amet ullamco dolor proident. Reprehenderit esse labore id veniam ut veniam non ex adipisicing amet ullamco dolor proident.</p>
+    </section>
+
+    {{ include('components/_member.html.twig') }}
+{% endblock %}
