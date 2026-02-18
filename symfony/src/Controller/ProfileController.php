@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\FlanFormType;
 use App\Form\ProfileFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -54,10 +55,14 @@ final class ProfileController extends AbstractController
     }
 
     #[Route('/flan/{id}', name: 'profile_flan')]
-    public function flan(User $user): Response
+    public function flan(Request $request, User $user): Response
     {
+        $form = $this->createForm(FlanFormType::class);
+        $form->handleRequest($request);
+
         return $this->render('profile/flan.html.twig', [
             'user' => $user,
+            'form' => $form,
         ]);
     }
 
