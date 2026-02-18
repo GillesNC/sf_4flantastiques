@@ -40,3 +40,24 @@
     display: flex;
     flex-direction: column;
 }
+
+#flan_form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+#flan_form > div {
+    display: flex;
+    flex-direction: column;
+}
+
+#flan_form_imageFlanUpload, #flan_form_imageSpotUpload{
+    height: 100px;
+    border-radius: 10px;
+    color: var(--color-secondary);
+    font-weight: bold;
+    border: 1px solid var(--color-secondary);
+    cursor: pointer;
+}
+

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\FlanFormType;
 use App\Form\ProfileFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -42,6 +43,42 @@ final class ProfileController extends AbstractController
         return $this->render('profile/edit.html.twig', [
             'user' => $user,
             'form' => $form,
+        ]);
+    }
+
+    #[Route('/reviews/{id}', name: 'profile_reviews', methods: ['GET'])]
+    public function reviews(User $user): Response
+    {
+        return $this->render('profile/reviews.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
+    #[Route('/flan/{id}', name: 'profile_flan')]
+    public function flan(Request $request, User $user): Response
+    {
+        $form = $this->createForm(FlanFormType::class);
+        $form->handleRequest($request);
+
+        return $this->render('profile/flan.html.twig', [
+            'user' => $user,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/favorites/{id}', name: 'profile_favorites', methods: ['GET'])]
+    public function favorites(User $user): Response
+    {
+        return $this->render('profile/favorites.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
+    #[Route('/ugc/{id}', name: 'profile_ugc')]
+    public function ugc(User $user): Response
+    {
+        return $this->render('profile/ugc.html.twig',[
+            'user' => $user,
         ]);
     }
 }
