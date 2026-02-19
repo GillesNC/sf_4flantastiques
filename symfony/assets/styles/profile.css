@@ -1,3 +1,8 @@
+.panel {
+    position: sticky;
+    top: 150px;
+}
+
 .panel-btn {
     display: flex;
     justify-content: center;
@@ -30,6 +35,10 @@
     font-weight: bold;
 }
 
+.form {
+    margin: 0;
+}
+
 #profile_form {
     display: flex;
     flex-direction: column;
@@ -41,7 +50,7 @@
     flex-direction: column;
 }
 
-#flan_form {
+#flan_form, #spot_form {
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -52,7 +61,12 @@
     flex-direction: column;
 }
 
-#flan_form_imageFlanUpload, #flan_form_imageSpotUpload{
+#spot_form > div {
+    display: flex;
+    flex-direction: column;
+}
+
+#flan_form_imageFlanUpload, #flan_form_imageSpotUpload {
     height: 100px;
     border-radius: 10px;
     color: var(--color-secondary);

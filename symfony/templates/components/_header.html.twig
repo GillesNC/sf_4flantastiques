@@ -5,9 +5,9 @@
                 4 Flantastiques
             </a>
         </div>
-        <div class="hidden lg:flex lg:gap-x-12">
+        <div class="menu-item hidden lg:flex lg:gap-x-12">
             <a href="{{ path('ranking') }}" class="font-semibold text-dark">Classement</a>
-            <a href="#" class="font-semibold text-dark">Explorer</a>
+            <a href="{{ path('spot') }}" class="font-semibold text-dark">Explorer</a>
             <a href="#" class="font-semibold text-dark">Nos flans</a>
             <a href="#" class="font-semibold text-dark">Qui sommes nous ?</a>
             <a href="#" class="font-semibold text-dark">Mag</a>
@@ -15,10 +15,10 @@
         <div class="hidden gap-4 lg:flex lg:flex-1 lg:justify-end">
             {% if app.user %}
                 <a href="{{ path('profile_show', {'id': app.user.id}) }}"
-                   class="font-semibold btn-primary text-light px-5">{{ app.user.pseudo }}</a>
-                <a href="{{ path('app_logout') }}" class="font-semibold btn-outline text-secondary">Déconnexion</a>
+                   class="btn-primary px-5">{{ app.user.pseudo }}</a>
+                <a href="{{ path('app_logout') }}" class="btn-outline">Déconnexion</a>
             {% else %}
-                <a href="{{ path('register') }}" class="font-semibold btn-primary text-light">Devenir flanneur</a>
+                <a href="{{ path('register') }}" class="btn-primary">Devenir flanneur</a>
                 <a href="{{ path('app_login') }}" class="ml-4 flex items-center text-secondary text-3xl"><i
                         class="fa-solid fa-circle-user"></i></a>
             {% endif %}

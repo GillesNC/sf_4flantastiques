@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Compte - {{ user.pseudo }}{% endblock %}
+
+{% block body %}
+    {% set current = app.request.attributes.get('_route') %}
+    <section class="hero flex flex-col max-w-7xl mx-auto m-25 gap-8">
+        <h1 class="text-secondary">Soumettre un flan et une enseigne</h1>
+        <div class="dashboard grid grid-cols-2 max-w-7xl w-full mx-auto gap-10 mb-50">
+
+            {% include 'components/_dashboard.html.twig' %}
+
+            <div
+                class="form flex flex-col max-w-7xl mx-auto gap-8 lg:mx-auto">
+                <div
+                    class="form flex flex-col max-w-7xl mx-auto p-10 gap-8 border-1 border-solid border-secondary rounded-xl lg:mx-auto">
+                    {{ form_start(formFlan, {'attr': {'id': 'flan_form'}}) }}
+                    <h3 class="text-secondary">Soumettre un flan</h3>
+                    {{ form_widget(formFlan) }}
+                    <button class="btn btn-primary w-100 mt-4">Envoyer ma demande</button>
+                    {{ form_end(formFlan) }}
+                </div>
+                <div
+                    class="form flex flex-col max-w-7xl mx-auto p-10 gap-8 border-1 border-solid border-secondary rounded-xl lg:mx-auto">
+                    {{ form_start(formSpot, {'attr': {'id': 'flan_form'}}) }}
+                    <h3 class="text-secondary">Soumettre une enseigne</h3>
+                    {{ form_widget(formSpot) }}
+                    <button class="btn btn-primary w-100 mt-4">Envoyer ma demande</button>
+                    {{ form_end(formSpot) }}
+                </div>
+            </div>
+
+        </div>
+    </section>
+{% endblock %}

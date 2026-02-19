@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}4Flantastiques - Explorer{% endblock %}
+
+{% block body %}
+    <section class="flex flex-col max-w-7xl mx-auto m-25 gap-8">
+        {{ include('components/_breadscrumb.html.twig', {centered: true}) }}
+        <h2 class="text-secondary text-center mb-8">Explorer les meilleurs flans de France</h2>
+        <div class="flex justify-center">
+            <a href="{{ path('register') }}" class="btn-primary">Devenir flanneur</a>
+        </div>
+    </section>
+
+    <section class="map flex flex-col max-w-7xl mx-auto m-25 gap-8 h-150 bg-secondary">
+
+        <form class="flex flex-col max-w-7xl mx-auto m-25 gap-8">
+            <div class="search flex gap-4">
+                <input type="text" placeholder="Rechercher une ville, un flan..." class="flex-1 p-2">
+                <button type="submit" class="btn-primary">Rechercher</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="city max-w-7xl mx-auto m-50">
+        <div class="flex items-center justify-between gap-4 mb-8">
+            <h2 class="text-secondary text-center mb-8">Nos flans par ville</h2>
+            <a href="#" class="btn-secondary">Découvrir toutes les villes</a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 h-200 bg-secondary"></div>
+    </section>
+
+    {{ include('components/_member.html.twig') }}
+{% endblock %}

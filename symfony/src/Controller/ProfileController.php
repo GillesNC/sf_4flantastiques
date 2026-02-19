@@ -2,15 +2,19 @@
 
 namespace App\Controller;
 
+use App\Entity\Flan;
+use App\Entity\Spot;
 use App\Entity\User;
 use App\Form\FlanFormType;
 use App\Form\ProfileFormType;
+use App\Form\SpotFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('/profile')]
 final class ProfileController extends AbstractController
@@ -54,15 +58,80 @@ final class ProfileController extends AbstractController
         ]);
     }
 
-    #[Route('/flan/{id}', name: 'profile_flan')]
-    public function flan(Request $request, User $user): Response
+    #[Route('/add/{id}', name: 'profile_flan', methods: ['GET', 'POST'])]
+    public function flan(Request $request, User $user, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
-        $form = $this->createForm(FlanFormType::class);
-        $form->handleRequest($request);
+        $flan = new Flan();
+        $formFlan = $this->createForm(FlanFormType::class, $flan);
+        $formFlan->handleRequest($request);
 
-        return $this->render('profile/flan.html.twig', [
+        $spot = new Spot();
+        $formSpot = $this->createForm(SpotFormType::class, $spot);
+        $formSpot->handleRequest($request);
+
+        // TRAITEMENT DU FORMULAIRE FLAN
+        if ($formFlan->isSubmitted() && $formFlan->isValid()) {
+            $flan->setUserId($user);
+            $photoFile = $formFlan->get('photo')->getData();
+
+            if ($photoFile) {
+                $originalFilename = pathinfo($photoFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $photoFile->guessExtension();
+
+                try {
+                    $photoFile->move(
+                        $this->getParameter('photos_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    $this->addFlash('error', 'Erreur lors du téléchargement de la photo : ' . $e->getMessage());
+                }
+
+                $flan->setPhoto([$newFilename]);
+            }
+
+            $entityManager->persist($flan);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Flan ajouté avec succès !');
+            return $this->redirectToRoute('profile_show', ['id' => $user->getId()]);
+        }
+
+        // TRAITEMENT DU FORMULAIRE SPOT
+        if ($formSpot->isSubmitted() && $formSpot->isValid()) {
+            $spot->setUserId($user);
+
+            $photoFile = $formSpot->get('photo')->getData();
+
+            if ($photoFile) {
+                $originalFilename = pathinfo($photoFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $photoFile->guessExtension();
+
+                try {
+                    $photoFile->move(
+                        $this->getParameter('photos_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    $this->addFlash('error', 'Erreur lors du téléchargement de la photo : ' . $e->getMessage());
+                }
+
+                $spot->setPhoto([$newFilename]);
+            }
+
+            $entityManager->persist($spot);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Spot ajouté avec succès !');
+            return $this->redirectToRoute('profile_show', ['id' => $user->getId()]);
+        }
+
+        return $this->render('profile/add.html.twig', [
             'user' => $user,
-            'form' => $form,
+            'formFlan' => $formFlan,
+            'formSpot' => $formSpot,
         ]);
     }
 
@@ -77,7 +146,7 @@ final class ProfileController extends AbstractController
     #[Route('/ugc/{id}', name: 'profile_ugc')]
     public function ugc(User $user): Response
     {
-        return $this->render('profile/ugc.html.twig',[
+        return $this->render('profile/ugc.html.twig', [
             'user' => $user,
         ]);
     }
