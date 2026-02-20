@@ -100,7 +100,7 @@ final class ProfileController extends AbstractController
 
         // TRAITEMENT DU FORMULAIRE SPOT
         if ($formSpot->isSubmitted() && $formSpot->isValid()) {
-            $spot->setUserId($user);
+            $spot->setUser($user);
 
             $photoFile = $formSpot->get('photo')->getData();
 

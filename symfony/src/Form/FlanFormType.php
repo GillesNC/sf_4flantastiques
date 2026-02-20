@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Flan;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -30,6 +31,7 @@ class FlanFormType extends AbstractType
                         extensions: ['jpg', 'jpeg', 'png', 'webp', 'gif'],
                     ),
                 ],
+                'multiple' => true,
             ])
 
             ->add('name', TextType::class, [
@@ -37,6 +39,15 @@ class FlanFormType extends AbstractType
                 'attr' => [
                     'class' => 'form-input',
                     'placeholder' => 'Exemple : Flan pâtissier',
+                ],
+                'required' => true,
+            ])
+
+            ->add('price', MoneyType::class, [
+                'label' => 'Prix du flan*',
+                'attr' => [
+                    'class' => 'form-input',
+                    'placeholder' => 'Exemple : 3.50',
                 ],
                 'required' => true,
             ])
