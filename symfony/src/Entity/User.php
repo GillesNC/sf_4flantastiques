@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -48,6 +50,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
+
+    /**
+     * @var Collection<int, Flan>
+     */
+    #[ORM\OneToMany(targetEntity: Flan::class, mappedBy: 'user')]
+    private Collection $flans;
+
+    /**
+     * @var Collection<int, Spot>
+     */
+    #[ORM\OneToMany(targetEntity: Spot::class, mappedBy: 'user')]
+    private Collection $spots;
+
+    public function __construct()
+    {
+        $this->flans = new ArrayCollection();
+        $this->spots = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -180,6 +200,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Flan>
+     */
+    public function getFlans(): Collection
+    {
+        return $this->flans;
+    }
+
+    public function addFlan(Flan $flan): static
+    {
+        if (!$this->flans->contains($flan)) {
+            $this->flans->add($flan);
+            $flan->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFlan(Flan $flan): static
+    {
+        if ($this->flans->removeElement($flan)) {
+            // set the owning side to null (unless already changed)
+            if ($flan->getUserId() === $this) {
+                $flan->setUserId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Spot>
+     */
+    public function getSpots(): Collection
+    {
+        return $this->spots;
+    }
+
+    public function addSpot(Spot $spot): static
+    {
+        if (!$this->spots->contains($spot)) {
+            $this->spots->add($spot);
+            $spot->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSpot(Spot $spot): static
+    {
+        if ($this->spots->removeElement($spot)) {
+            // set the owning side to null (unless already changed)
+            if ($spot->getUser() === $this) {
+                $spot->setUser(null);
+            }
+        }
 
         return $this;
     }
