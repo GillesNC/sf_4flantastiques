@@ -6,7 +6,7 @@
 
             <li><a class="panel-btn {% if app.request.attributes.get('_route') == 'profile_reviews' %}panel-btn-active{% endif %}" href="{{ path('profile_reviews', {'id': app.user.id}) }}">Mes avis</a></li>
 
-            <li><a class="panel-btn {% if app.request.attributes.get('_route') == 'profile_flan' %}panel-btn-active{% endif %}" href="{{ path('profile_flan', {'id': app.user.id}) }}">Soumettre un flan</a></li>
+            <li><a class="panel-btn {% if app.request.attributes.get('_route') == 'profile_flan' %}panel-btn-active{% endif %}" href="{{ path('profile_flan', {'id': app.user.id}) }}">Soumettre un flan & une enseigne</a></li>
 
             <li><a class="panel-btn {% if app.request.attributes.get('_route') == 'profile_favorites' %}panel-btn-active{% endif %}" href="{{ path('profile_favorites', {'id': app.user.id}) }}">Mes flans favoris</a></li>
 

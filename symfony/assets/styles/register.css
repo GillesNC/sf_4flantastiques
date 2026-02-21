@@ -29,7 +29,3 @@ label {
     height: 250px;
     padding: 10px;
 }
-
-input:checked {
-    background-color: red !important;
-}
