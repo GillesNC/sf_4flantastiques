@@ -1,0 +1,73 @@
+<header class="bg-primary mt-4 lg:mt-10 mx-4 lg:mx-auto rounded-[100px] overflow-visible z-30 max-w-7xl sticky top-10">
+    <nav aria-label="Global" class="mx-auto flex items-center justify-between max-w-7xl p-2 px-6 lg:px-10">
+        <div class="flex lg:flex-1 shrink-0">
+            <a href="{{ path('home') }}" class="flex font-bold items-center gap-x-2 text-secondary">
+                4 Flantastiques
+            </a>
+        </div>
+        <div class="hidden lg:flex lg:gap-x-12">
+            <a href="{{ path('ranking') }}" class="font-semibold text-dark">Classement</a>
+            <a href="#" class="font-semibold text-dark">Explorer</a>
+            <a href="#" class="font-semibold text-dark">Nos flans</a>
+            <a href="#" class="font-semibold text-dark">Qui sommes nous ?</a>
+            <a href="#" class="font-semibold text-dark">Mag</a>
+        </div>
+        <div class="hidden gap-4 lg:flex lg:flex-1 lg:justify-end">
+            {% if app.user %}
+                <a href="{{ path('profile_show', {'id': app.user.id}) }}"
+                   class="font-semibold btn-primary text-light px-5">{{ app.user.pseudo }}</a>
+                <a href="{{ path('app_logout') }}" class="font-semibold btn-outline text-secondary">Déconnexion</a>
+            {% else %}
+                <a href="{{ path('register') }}" class="font-semibold btn-primary text-light">Devenir flanneur</a>
+                <a href="{{ path('app_login') }}" class="ml-4 flex items-center text-secondary text-3xl"><i
+                        class="fa-solid fa-circle-user"></i></a>
+            {% endif %}
+        </div>
+
+        {# BURGER MENU #}
+        <div class="flex lg:hidden">
+            <button type="button" onclick="document.getElementById('mobile-menu').showModal()"
+                    class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-secondary">
+                <span class="sr-only">Ouvrir le menu</span>
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </nav>
+</header>
+
+{# MENU MOBILE #}
+<dialog id="mobile-menu"
+        class="lg:hidden m-0 h-full max-h-full w-full max-w-sm fixed inset-y-0 right-0 z-50 overflow-y-auto bg-primary p-6 backdrop:bg-black/50">
+    <div class="flex items-center justify-between">
+        <a href="{{ path('home') }}" class="flex font-bold items-center gap-x-2 text-secondary">
+            4 Flantastiques
+        </a>
+        <button type="button" onclick="document.getElementById('mobile-menu').close()"
+                class="-m-2.5 rounded-md p-2.5 text-secondary">
+            <span class="sr-only">Fermer le menu</span>
+            <i class="fa-solid fa-xmark text-2xl"></i>
+        </button>
+    </div>
+    <div class="mt-6 flow-root">
+        <div class="-my-6 divide-y divide-secondary/20">
+            <div class="space-y-2 py-6">
+                <a href="#" class="-mx-3 block px-3 py-2 font-semibold text-dark">Classement</a>
+                <a href="#" class="-mx-3 block px-3 py-2 font-semibold text-dark ">Explorer</a>
+                <a href="#" class="-mx-3 block  px-3 py-2 font-semibold text-dark ">Nos flans</a>
+                <a href="#" class="-mx-3 block px-3 py-2 font-semibold text-dark ">Qui sommes nous ?</a>
+                <a href="#" class="-mx-3 block  px-3 py-2font-semibold text-dark ">Mag</a>
+            </div>
+            <div class="py-6 flex flex-col gap-4">
+                {% if app.user %}
+                    <a href="{{ path('home') }}"
+                       class="font-semibold btn-primary text-light px-5">{{ app.user.pseudo }}</a>
+                    <a href="{{ path('app_logout') }}" class="font-semibold btn-outline text-secondary">Déconnexion</a>
+                {% else %}
+                    <a href="{{ path('register') }}" class="font-semibold btn-primary text-light">Devenir flanneur</a>
+                    <a href="{{ path('app_login') }}" class="ml-4 flex items-center text-secondary text-3xl"><i
+                            class="fa-solid fa-circle-user"></i></a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</dialog>

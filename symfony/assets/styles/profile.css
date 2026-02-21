@@ -1,0 +1,63 @@
+.panel-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    background-color: var(--color-light);
+    border: 1px solid var(--color-secondary);
+    border-radius: 100px;
+    color: var(--color-secondary);
+    font-weight: bold;
+}
+
+.panel-btn:hover {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    transition: 0.3s;
+}
+
+.panel-btn-active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    background-color: var(--color-primary);
+    border: 1px solid var(--color-secondary);
+    border-radius: 100px;
+    color: var(--color-secondary);
+    font-weight: bold;
+}
+
+#profile_form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+#profile_form > div {
+    display: flex;
+    flex-direction: column;
+}
+
+#flan_form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+#flan_form > div {
+    display: flex;
+    flex-direction: column;
+}
+
+#flan_form_imageFlanUpload, #flan_form_imageSpotUpload{
+    height: 100px;
+    border-radius: 10px;
+    color: var(--color-secondary);
+    font-weight: bold;
+    border: 1px solid var(--color-secondary);
+    cursor: pointer;
+}
+

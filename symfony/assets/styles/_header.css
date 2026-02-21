@@ -1,0 +1,8 @@
+#mobile-menu {
+    border: none;
+    outline: none;
+}
+
+#mobile-menu::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
