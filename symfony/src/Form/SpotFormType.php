@@ -59,14 +59,14 @@ class SpotFormType extends AbstractType
                 'required' => true,
             ])
 
-            ->add('city', TextType::class, [
-                'label' => 'Ville de l\'enseigne*',
-                'attr' => [
-                    'class' => 'form-input',
-                    'placeholder' => 'Exemple : Paris',
-                ],
-                'required' => true,
-            ])
+//            ->add('city', TextType::class, [
+//                'label' => 'Ville de l\'enseigne*',
+//                'attr' => [
+//                    'class' => 'form-input',
+//                    'placeholder' => 'Exemple : Paris',
+//                ],
+//                'required' => true,
+//            ])
 
             ->add('website', TextType::class, [
                 'label' => 'Site internet de l\'enseigne',

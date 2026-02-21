@@ -1,0 +1,10 @@
+<article class="card-spot">
+    {% for photo in spot.photo %}
+        <img src="{{ photo }}" alt="">
+    {% endfor %}
+    <div class="card-content flex flex-col gap-4 backdrop-filter backdrop-blur-sm bg-opacity-10 ">
+        <h3 class="card-title text-secondary">{{ spot.name }}</h3>
+        <p class="text-secondary">Ville :</p>
+        <a class="btn-primary">Découvrir</a>
+    </div>
+</article>
