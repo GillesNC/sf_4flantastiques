@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\City;
 use App\Entity\Spot;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -59,14 +61,14 @@ class SpotFormType extends AbstractType
                 'required' => true,
             ])
 
-//            ->add('city', TextType::class, [
-//                'label' => 'Ville de l\'enseigne*',
-//                'attr' => [
-//                    'class' => 'form-input',
-//                    'placeholder' => 'Exemple : Paris',
-//                ],
-//                'required' => true,
-//            ])
+            ->add('city', EntityType::class, [
+                'class' => City::class,
+                'choice_label' => 'name',
+                'label' => 'Ville de l\'enseigne*',
+                'attr' => [
+                    'class' => 'form-input',
+                ],
+            ])
 
             ->add('website', TextType::class, [
                 'label' => 'Site internet de l\'enseigne',
