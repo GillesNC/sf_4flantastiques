@@ -14,6 +14,7 @@ final class SpotController extends AbstractController
     public function index(SpotRepository $spotRepository): Response
     {
         $spots = $spotRepository->findAll();
+
         return $this->render('spot/index.html.twig', [
             'spots' => $spots,
         ]);

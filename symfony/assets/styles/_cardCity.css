@@ -1,0 +1,12 @@
+.card-city {
+    height: 100%;
+}
+
+.card-content-city img {
+    border-radius: 10px;
+    opacity: 0.95;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(var(--tw-backdrop-blur));
+}
