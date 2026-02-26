@@ -62,9 +62,16 @@ class Spot
     #[ORM\JoinColumn(nullable: false)]
     private ?City $city = null;
 
+    /**
+     * @var Collection<int, Flan>
+     */
+    #[ORM\OneToMany(targetEntity: Flan::class, mappedBy: 'spot')]
+    private Collection $flans;
+
     public function __construct()
     {
         $this->documents = new ArrayCollection();
+        $this->flans = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -251,6 +258,36 @@ class Spot
     public function setCity(?City $city): static
     {
         $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Flan>
+     */
+    public function getFlans(): Collection
+    {
+        return $this->flans;
+    }
+
+    public function addFlan(Flan $flan): static
+    {
+        if (!$this->flans->contains($flan)) {
+            $this->flans->add($flan);
+            $flan->setSpot($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFlan(Flan $flan): static
+    {
+        if ($this->flans->removeElement($flan)) {
+            // set the owning side to null (unless already changed)
+            if ($flan->getSpot() === $this) {
+                $flan->setSpot(null);
+            }
+        }
 
         return $this;
     }

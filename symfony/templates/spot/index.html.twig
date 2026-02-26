@@ -31,13 +31,9 @@
         </div>
     </section>
 
-    <section class="city max-w-7xl mx-auto m-50">
-        <div class="flex items-center justify-between gap-4 mb-8">
-            <h2 class="text-secondary text-center mb-8">Nos flans par ville</h2>
-            <a href="#" class="btn-secondary">Découvrir toutes les villes</a>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 h-200 bg-secondary"></div>
-    </section>
+    {# SECTION CITIES #}
+    {{ include('components/_cardCity.html.twig') }}
 
+    {# SECTION MEMBER #}
     {{ include('components/_member.html.twig') }}
 {% endblock %}
