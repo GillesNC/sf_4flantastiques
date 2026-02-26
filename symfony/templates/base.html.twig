@@ -25,6 +25,13 @@
 		{% block header %}
 			{{ include('components/_header.html.twig') }}
 		{% endblock %}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
 		{% block body %}{% endblock %}
 		{% block footer %}
 			{{ include('components/_footer.html.twig') }}

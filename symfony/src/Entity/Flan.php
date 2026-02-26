@@ -61,6 +61,9 @@ class Flan
     #[ORM\ManyToMany(targetEntity: Document::class, mappedBy: 'flan')]
     private Collection $documents;
 
+    #[ORM\ManyToOne(inversedBy: 'flans')]
+    private ?Spot $spot = null;
+
     public function __construct()
     {
         $this->documents = new ArrayCollection();
@@ -250,6 +253,18 @@ class Flan
         if ($this->documents->removeElement($document)) {
             $document->removeFlan($this);
         }
+
+        return $this;
+    }
+
+    public function getSpot(): ?Spot
+    {
+        return $this->spot;
+    }
+
+    public function setSpot(?Spot $spot): static
+    {
+        $this->spot = $spot;
 
         return $this;
     }

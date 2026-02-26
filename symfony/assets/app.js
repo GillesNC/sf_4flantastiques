@@ -18,5 +18,8 @@ import './styles/spot.css'
 import './styles/_header.css';
 import './styles/_footer.css';
 import './styles/_cardSpot.css';
+import './styles/_cardFlan.css';
+import './styles/_cardCity.css';
+
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
