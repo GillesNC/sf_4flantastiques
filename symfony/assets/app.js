@@ -13,6 +13,8 @@ import './styles/register.css';
 import './styles/login.css'
 import './styles/profile.css'
 import './styles/spot.css'
+import './styles/flan.css'
+import './styles/aboutUs.css'
 
 /* COMPONENTS CSS */
 import './styles/_header.css';

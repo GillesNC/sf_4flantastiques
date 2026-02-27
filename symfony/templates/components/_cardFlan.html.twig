@@ -1,10 +1,18 @@
 <article class="card-flan">
-    {% for photo in flan.photo %}
-        <img src="{{ photo }}" alt="">
-    {% endfor %}
+    {% if photo is defined %}
+        {% for photo in flan.photo %}
+            <img src="{{ photo }}" alt="{{ flan.name }}">
+        {% endfor %}
+    {% else %}
+        <img src="{{ asset('images/default_flan.webp') }}" alt="Image par défaut du flan">
+    {% endif %}
     <div class="card-content flex flex-col gap-4 backdrop-filter backdrop-blur-sm bg-opacity-10 ">
         <h3 class="card-title text-secondary">{{ flan.name }}</h3>
-        <p class="text-secondary">Ville :</p>
+        {% if flan.spot.city is defined %}
+            <p class="text-secondary">Ville : {{ flan.spot.city.name }}</p>
+        {% else %}
+            <p class="text-secondary">Ville : Non renseigné</p>
+        {% endif %}
         <p class="text-secondary">Prix : {{ flan.price }} €</p>
         <p class="text-secondary">Note : {{ flan.avgScore }}/5</p>
         <a class="btn-primary">Découvrir</a>

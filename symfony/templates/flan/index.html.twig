@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}4Flantastiques - Nos flans{% endblock %}
+
+{% block body %}
+    <section class="flex flex-col max-w-7xl mx-auto m-25 gap-8">
+        {{ include('components/_breadscrumb.html.twig', {centered: true}) }}
+        <h2 class="text-secondary text-center mb-8">Les meilleurs flans de France</h2>
+        <div class="flex justify-center">
+            <a href="{{ path('register') }}" class="btn-primary">Devenir flanneur</a>
+        </div>
+    </section>
+
+    {# SECTION FLAN & FILTRE #}
+    <section class="flex max-w-7xl mx-auto m-20 gap-8">
+        <div class="filter w-full bg-primary flex flex-col gap-8">
+            <h3 class="text-secondary">Choisir une ville</h3>
+            <h3 class="text-secondary">A découvrir</h3>
+            <h3 class="text-secondary">Prix</h3>
+            <h3 class="text-secondary">Note</h3>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-2 gap-8">
+            {% for flan in flans %}
+                {{ include('components/_cardFlan.html.twig') }}
+            {% endfor %}
+        </div>
+    </section>
+
+
+    {# SECTION MEMBER #}
+    {{ include('components/_member.html.twig') }}
+
+{% endblock %}

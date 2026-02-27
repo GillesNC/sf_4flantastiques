@@ -1,10 +1,18 @@
 <article class="card-spot">
-    {% for photo in spot.photo %}
-        <img src="{{ photo }}" alt="">
-    {% endfor %}
+    {% if photo is defined %}
+        {% for photo in spot.photo %}
+            <img src="{{ photo }}" alt="{{ spot.name }}">
+        {% endfor %}
+    {% else %}
+        <img src="{{ asset('images/default_spot.webp') }}" alt="Image par défaut du flan">
+    {% endif %}
     <div class="card-content flex flex-col gap-4 backdrop-filter backdrop-blur-sm bg-opacity-10 ">
         <h3 class="card-title text-secondary">{{ spot.name }}</h3>
-        <p class="text-secondary">Ville :</p>
+        {% if spot.city is defined %}
+            <p class="text-secondary">Ville : {{ spot.city.name }}</p>
+        {% else %}
+            <p class="text-secondary">Ville : Non renseigné</p>
+        {% endif %}
         <a class="btn-primary">Découvrir</a>
     </div>
 </article>
