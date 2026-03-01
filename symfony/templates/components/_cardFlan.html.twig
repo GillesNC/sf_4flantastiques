@@ -15,6 +15,6 @@
         {% endif %}
         <p class="text-secondary">Prix : {{ flan.price }} €</p>
         <p class="text-secondary">Note : {{ flan.avgScore }}/5</p>
-        <a class="btn-primary">Découvrir</a>
+        <a class="btn-primary" href="{{ path('flan_detail', {'id': flan.id}) }}">Découvrir</a>
     </div>
 </article>

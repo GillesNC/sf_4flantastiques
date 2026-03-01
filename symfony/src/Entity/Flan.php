@@ -20,7 +20,7 @@ class Flan
     private ?string $name = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $category = null;
+    private ?array $category = [];
 
     #[ORM\Column(nullable: true)]
     private ?array $photo = null;
@@ -86,12 +86,12 @@ class Flan
         return $this;
     }
 
-    public function getCategory(): ?string
+    public function getCategory(): ?array
     {
         return $this->category;
     }
 
-    public function setCategory(?string $category): static
+    public function setCategory(?array $category): static
     {
         $this->category = $category;
 
