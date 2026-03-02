@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}4Flantastiques - {{ spot.name }} {% endblock %}
+
+{% block body %}
+    {# SECTION SPOT #}
+    <section class="flex flex-col max-w-7xl mx-auto mt-20 mb-50 gap-4">
+        {{ include('components/_breadscrumb.html.twig') }}
+        <div class="gallery-spot grid grid-cols-2 gap-8 mt-10">
+            <div class="img-spot">
+                {% if spot.documents is not empty %}
+                    <img src="{{ asset('uploads/documents/' ~ spot.documents|first.path) }}" alt="{{ spot.name }}">
+                {% else %}
+                    <img src="{{ asset('images/default_spot.webp') }}" alt="Image par défaut">
+                {% endif %}
+            </div>
+            <div class="flex flex-col justify-center gap-8">
+                <div class="flex flex-col gap-4">
+                    <h1 class="text-secondary">{{ spot.name }}</h1>
+                    <p>{{ spot.bio }}</p>
+                    <p>Adresse : {{ spot.address }}, {{ spot.city.name }} {{ spot.postalCode }}</p>
+                    <p>Site internet : {{ spot.website }}</p>
+                </div>
+                <div class="flex justify-between items-center gap-4">
+                    <a href="{{ path('register') }}" class="btn-primary">Soumettre un flan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# SECTION FLAN #}
+    <section class="flex flex-col max-w-7xl mx-auto gap-4">
+        <h2 class="text-secondary text-center">Tous les flans de l'enseigne</h2>
+        <div class="grid grid-cols-2 gap-4">
+            {% for flan in spot.flans %}
+                {{ include('components/_cardFlan.html.twig') }}
+            {% endfor %}
+        </div>
+    </section>
+
+    {# SECTION MEMBER #}
+    {{ include('components/_member.html.twig') }}
+
+{% endblock %}

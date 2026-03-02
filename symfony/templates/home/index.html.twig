@@ -27,7 +27,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div class="title-flan flex flex-col justify-center gap-4 bg-primary h-full">
                 <h2 class="text-secondary">Nos coups de coeurs du mois</h2>
-                <a href="{{ path('home') }}" class="btn-primary">Découvrir tous nos flans</a>
+                <a href="{{ path('flan') }}" class="btn-primary">Découvrir tous nos flans</a>
             </div>
             {% for flan in flans %}
                 {{ include('components/_cardFlan.html.twig') }}
@@ -42,7 +42,7 @@
             <p class="text-light">Zoome sur ta ville, filtre par note, prix/part et type (vanille, pistache, chocolat…).
                 Découvre où se cachent les flans qui valent vraiment le détour.</p>
         </div>
-        <a href="#" class="btn-secondary">Explorer</a>
+        <a href="{{ path('spot') }}" class="btn-secondary">Explorer</a>
     </section>
 
     {# SECTION CITIES #}

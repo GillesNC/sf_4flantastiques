@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Flan;
 use App\Entity\Spot;
 use App\Repository\CityRepository;
 use App\Repository\SpotRepository;
@@ -22,4 +23,16 @@ final class SpotController extends AbstractController
             'cities' => $cities,
         ]);
     }
+
+    #[Route('/spot/{id}', name: 'spot_detail', methods: ['GET'])]
+    public function detailSpot(Spot $spot): Response
+    {
+        $flan = $spot->getFlans();
+
+        return $this->render('spot/detailSpot.html.twig', [
+            'spot' => $spot,
+            'flan' => $flan
+        ]);
+    }
+
 }
