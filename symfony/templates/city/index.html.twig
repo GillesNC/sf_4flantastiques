@@ -13,8 +13,8 @@
 
     <section class="max-w-7xl mx-auto m-50">
         <div class="grid grid-cols-3 md:grid-cols-3 gap-8">
-            <a href="{{ path('city_detail', {'id': city.id}) }}">
-                {% for city in cities %}
+            {% for city in cities %}
+                <a href="{{ path('city_detail', {'id': city.id}) }}">
                     <article class="card-city">
                         <div class="card-content-city relative">
                             <img
@@ -26,8 +26,8 @@
                             </div>
                         </div>
                     </article>
-                {% endfor %}
-            </a>
+                </a>
+            {% endfor %}
         </div>
     </section>
 

@@ -52,6 +52,11 @@
 }
 
 @layer components {
+    .my-container {
+        .max-w-7xl,
+        .mx-auto
+    }
+
     .btn-primary {
         background-color: var(--color-tertiary);
         color: var(--color-light);

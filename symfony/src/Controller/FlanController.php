@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Document;
 use App\Entity\Flan;
-use App\Entity\Spot;
 use App\Repository\FlanRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,10 +26,14 @@ final class FlanController extends AbstractController
     public function detailFlan(Flan $flan): Response
     {
         $spot = $flan->getSpot();
+        $documents = $flan->getDocuments();
+        $reviews = $flan->getReviews();
 
         return $this->render('flan/detailFlan.html.twig', [
             'flan' => $flan,
             'spot' => $spot,
+            'documents' => $documents,
+            'reviews' => $reviews
         ]);
     }
 }
