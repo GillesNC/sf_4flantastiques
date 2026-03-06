@@ -8,6 +8,7 @@ use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,6 +19,7 @@ class ReviewFormType extends AbstractType
     {
         $builder
             ->add('texture', ChoiceType::class, [
+                'label' => 'Texture/crème',
                 'choices' => [
                     '1' => 1,
                     '2' => 2,
@@ -29,6 +31,7 @@ class ReviewFormType extends AbstractType
                 'multiple' => false,
             ])
             ->add('dough', ChoiceType::class, [
+                'label' => 'Pâte',
                 'choices' => [
                     '1' => 1,
                     '2' => 2,
@@ -40,6 +43,7 @@ class ReviewFormType extends AbstractType
                 'multiple' => false,
             ])
             ->add('visual', ChoiceType::class, [
+                'label' => 'Aspect visuel',
                 'choices' => [
                     '1' => 1,
                     '2' => 2,
@@ -51,6 +55,7 @@ class ReviewFormType extends AbstractType
                 'multiple' => false,
             ])
             ->add('valueForMoney', ChoiceType::class, [
+                'label' => 'Rapport qualité/prix',
                 'choices' => [
                     '1' => 1,
                     '2' => 2,
@@ -62,9 +67,14 @@ class ReviewFormType extends AbstractType
                 'multiple' => false,
             ])
             ->add('comment', TextareaType::class, [
-                'attr' => ['class' => 'form-input', 'placeholder' => 'Votre petite présentation  en quelques mots...'],
+                'attr' => ['placeholder' => 'Votre petite présentation  en quelques mots...'],
                 'label' => 'Expliquez vos notes en laissez votre avis',
                 'required' => false,
+            ])
+
+            ->add('submit', SubmitType::class, [
+                'label' => 'Envoyer votre avis',
+                'attr' => ['class' => 'btn btn-primary mt-3 '],
             ])
         ;
     }

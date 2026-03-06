@@ -4,8 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Document;
 use App\Entity\Flan;
+use App\Form\ReviewFormType;
 use App\Repository\FlanRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -23,17 +26,32 @@ final class FlanController extends AbstractController
     }
 
     #[Route('/{id}', name: 'flan_detail', methods: ['GET'])]
-    public function detailFlan(Flan $flan): Response
+    public function detailFlan(Flan $flan, Request $request, EntityManagerInterface $entityManager): Response
     {
         $spot = $flan->getSpot();
         $documents = $flan->getDocuments();
         $reviews = $flan->getReviews();
 
+        $formReview = $this->createForm(ReviewFormType::class);
+        $formReview->handleRequest($request);
+
+        if ($formReview->isSubmitted() && $formReview->isValid()) {
+            $review = $formReview->getData();
+            $review->setFlan($flan);
+            $review->setUser($this->getUser());
+
+            $entityManager->persist($review);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('flan_detail', ['id' => $flan->getId()]);
+        }
+
         return $this->render('flan/detailFlan.html.twig', [
             'flan' => $flan,
             'spot' => $spot,
             'documents' => $documents,
-            'reviews' => $reviews
+            'reviews' => $reviews,
+            'formReview' => $formReview
         ]);
     }
 }

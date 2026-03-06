@@ -48,5 +48,36 @@
     border: 1px solid var(--color-secondary);
     border-radius: 10px;
     padding: 25px;
-    max-width: 400px;
+}
+
+#review_form {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 100%;
+}
+
+#review_form div {
+    display: flex;
+    justify-content: space-between;
+}
+
+#review_form div label {
+    color: var(--color-secondary);
+}
+
+#review_form div:nth-child(5) {
+    flex-direction: column;
+    gap: 10px;
+}
+
+#review_form_comment {
+    height: 250px;
+    background-color: var(--color-light);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#review_form div:nth-child(6) {
+    justify-content: center;
 }

@@ -69,32 +69,52 @@
             </div>
         </div>
         <div class="flex flex-col gap-10 mt-10">
-            <div class="reviews-list flex flex-wrap gap-4">
+            <div class="reviews-list grid grid-cols-2 justify-between gap-4 w-full">
                 <div class="reviews-box flex flex-col items-center justify-center gap-4">
                     <h3 class="text-secondary">Jean Dupont</h3>
-                    <p class="text-center font-light">Le meilleur flan que j'ai jamais goûté ! La texture était parfaite et le goût était divin. Je recommande vivement ce flan à tous les amateurs de desserts.</p>
+                    <p class="text-center font-light">Le meilleur flan que j'ai jamais goûté ! La texture était parfaite
+                        et le goût était divin. Je recommande vivement ce flan à tous les amateurs de desserts.</p>
                     <p class="font-bold">Note</p>
                     <div class="rewiews-star"></div>
                 </div>
                 <div class="reviews-box flex flex-col items-center justify-center gap-4">
                     <h3 class="text-secondary">Jean Dupont</h3>
-                    <p class="text-center font-light">Le meilleur flan que j'ai jamais goûté ! La texture était parfaite et le goût était divin. Je recommande vivement ce flan à tous les amateurs de desserts.</p>
+                    <p class="text-center font-light">Le meilleur flan que j'ai jamais goûté ! La texture était parfaite
+                        et le goût était divin. Je recommande vivement ce flan à tous les amateurs de desserts.</p>
                     <p class="font-bold">Note</p>
                     <div class="rewiews-star"></div>
                 </div>
                 <div class="reviews-box flex flex-col items-center justify-center gap-4">
                     <h3 class="text-secondary">Jean Dupont</h3>
-                    <p class="text-center font-light">Le meilleur flan que j'ai jamais goûté ! La texture était parfaite et le goût était divin. Je recommande vivement ce flan à tous les amateurs de desserts.</p>
+                    <p class="text-center font-light">Le meilleur flan que j'ai jamais goûté ! La texture était parfaite
+                        et le goût était divin. Je recommande vivement ce flan à tous les amateurs de desserts.</p>
+                    <p class="font-bold">Note</p>
+                    <div class="rewiews-star"></div>
+                </div>
+                <div class="reviews-box flex flex-col items-center justify-center gap-4">
+                    <h3 class="text-secondary">Jean Dupont</h3>
+                    <p class="text-center font-light">Le meilleur flan que j'ai jamais goûté ! La texture était parfaite
+                        et le goût était divin. Je recommande vivement ce flan à tous les amateurs de desserts.</p>
                     <p class="font-bold">Note</p>
                     <div class="rewiews-star"></div>
                 </div>
             </div>
-
-
             <div class="flex justify-center items-center gap-4">
-                <a href="{{ path('register') }}" class="btn-secondary">Voir d'autres avis</a>
-                <a class="btn-outline font-bold">Donner votre avis</a>
+                <a href="" class="btn-secondary">Voir d'autres avis</a>
+                {% if not app.user %}
+                    <a href="{{ path('register') }}" class="btn-outline font-bold">Donner votre avis</a>
+                {% endif %}
             </div>
+            {% if app.user %}
+                <div class="flex flex-col items-center justify-center gap-8 bg-primary rounded-xl p-10">
+                    <h2 class="text-secondary">Donner votre avis sur ce flan</h2>
+                    <div class="form-review w-full">
+                        {{ form_start(formReview) }}
+                        {{ form_widget(formReview) }}
+                        {{ form_end(formReview) }}
+                    </div>
+                </div>
+            {% endif %}
         </div>
     </section>
 
