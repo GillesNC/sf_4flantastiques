@@ -64,9 +64,16 @@ class Flan
     #[ORM\ManyToOne(inversedBy: 'flans')]
     private ?Spot $spot = null;
 
+    /**
+     * @var Collection<int, Review>
+     */
+    #[ORM\OneToMany(targetEntity: Review::class, mappedBy: 'flan')]
+    private Collection $reviews;
+
     public function __construct()
     {
         $this->documents = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -265,6 +272,36 @@ class Flan
     public function setSpot(?Spot $spot): static
     {
         $this->spot = $spot;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Review>
+     */
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
+    }
+
+    public function addReview(Review $review): static
+    {
+        if (!$this->reviews->contains($review)) {
+            $this->reviews->add($review);
+            $review->setFlan($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReview(Review $review): static
+    {
+        if ($this->reviews->removeElement($review)) {
+            // set the owning side to null (unless already changed)
+            if ($review->getFlan() === $this) {
+                $review->setFlan(null);
+            }
+        }
 
         return $this;
     }

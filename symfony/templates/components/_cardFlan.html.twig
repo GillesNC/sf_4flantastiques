@@ -1,8 +1,6 @@
 <article class="card-flan">
-    {% if photo is defined %}
-        {% for photo in flan.photo %}
-            <img src="{{ photo }}" alt="{{ flan.name }}">
-        {% endfor %}
+    {% if flan.documents is not empty %}
+        <img src="{{ asset('uploads/documents/' ~ flan.documents|first.path) }}" alt="{{ flan.name }}">
     {% else %}
         <img src="{{ asset('images/default_flan.webp') }}" alt="Image par défaut du flan">
     {% endif %}

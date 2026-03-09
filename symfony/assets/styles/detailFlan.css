@@ -43,3 +43,67 @@
     padding: 50px;
     border-radius: 10px;
 }
+
+.reviews-box {
+    border: 1px solid var(--color-secondary);
+    border-radius: 10px;
+    padding: 25px;
+}
+
+#review_form {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 100%;
+}
+
+#review_form div {
+    display: flex;
+    justify-content: space-between;
+}
+
+#review_form div label {
+    color: var(--color-secondary);
+}
+
+#review_form div:nth-child(5) {
+    flex-direction: column;
+    gap: 10px;
+}
+
+#review_form_comment {
+    height: 250px;
+    background-color: var(--color-light);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#review_form div:nth-child(6) {
+    justify-content: center;
+}
+
+/*STAR RATING*/
+.rating input[type="radio"] {
+    display: none;
+}
+
+.form-star label {
+    cursor: pointer;
+    font-size: 2rem;
+    color: #9E5B31;
+    transition: color 0.2s ease;
+}
+
+.form-star label::before {
+    content: "☆";
+}
+
+.form-star label.active::before {
+    content: "★";
+}
+
+
+.form-star label.hover::before {
+    content: "★";
+}
+

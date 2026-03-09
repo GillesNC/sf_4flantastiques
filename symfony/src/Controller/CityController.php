@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\City;
-use App\Entity\Spot;
 use App\Repository\CityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
