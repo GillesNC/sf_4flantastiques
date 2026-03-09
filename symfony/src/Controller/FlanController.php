@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Document;
 use App\Entity\Flan;
 use App\Form\ReviewFormType;
 use App\Repository\FlanRepository;
@@ -25,7 +24,7 @@ final class FlanController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'flan_detail', methods: ['GET'])]
+    #[Route('/{id}', name: 'flan_detail', methods: ['GET', 'POST'])]
     public function detailFlan(Flan $flan, Request $request, EntityManagerInterface $entityManager): Response
     {
         $spot = $flan->getSpot();
@@ -39,6 +38,7 @@ final class FlanController extends AbstractController
             $review = $formReview->getData();
             $review->setFlan($flan);
             $review->setUser($this->getUser());
+            $review->calculateGlobalRating();
 
             $entityManager->persist($review);
             $entityManager->flush();
