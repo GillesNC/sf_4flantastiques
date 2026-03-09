@@ -69,7 +69,7 @@
             </div>
         </div>
         <div class="flex flex-col gap-10 mt-10">
-            <div class="reviews-list grid grid-cols-2 justify-between gap-4 w-full">
+            <div class="reviews-list flex justify-between gap-4 w-full">
                 <div class="reviews-box flex flex-col items-center justify-center gap-4">
                     <h3 class="text-secondary">Jean Dupont</h3>
                     <p class="text-center font-light">Le meilleur flan que j'ai jamais goûté ! La texture était parfaite
@@ -110,7 +110,9 @@
                     <h2 class="text-secondary">Donner votre avis sur ce flan</h2>
                     <div class="form-review w-full">
                         {{ form_start(formReview) }}
-                        {{ form_widget(formReview) }}
+                        <div class="rating">
+                            {{ form_widget(formReview) }}
+                        </div>
                         {{ form_end(formReview) }}
                     </div>
                 </div>

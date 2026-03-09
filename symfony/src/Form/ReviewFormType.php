@@ -20,6 +20,7 @@ class ReviewFormType extends AbstractType
         $builder
             ->add('texture', ChoiceType::class, [
                 'label' => 'Texture/crème',
+                'attr' => ['class' => 'form-radio'],
                 'choices' => [
                     '1' => 1,
                     '2' => 2,
@@ -27,11 +28,15 @@ class ReviewFormType extends AbstractType
                     '4' => 4,
                     '5' => 5,
                 ],
+                'choice_label' => function() {
+                    return ' ';
+                },
                 'expanded' => true,
                 'multiple' => false,
             ])
             ->add('dough', ChoiceType::class, [
                 'label' => 'Pâte',
+                'attr' => ['class' => 'form-radio'],
                 'choices' => [
                     '1' => 1,
                     '2' => 2,
@@ -39,11 +44,15 @@ class ReviewFormType extends AbstractType
                     '4' => 4,
                     '5' => 5,
                 ],
+                'choice_label' => function() {
+                    return ' ';
+                },
                 'expanded' => true,
                 'multiple' => false,
             ])
             ->add('visual', ChoiceType::class, [
                 'label' => 'Aspect visuel',
+                'attr' => ['class' => 'form-radio'],
                 'choices' => [
                     '1' => 1,
                     '2' => 2,
@@ -51,11 +60,15 @@ class ReviewFormType extends AbstractType
                     '4' => 4,
                     '5' => 5,
                 ],
+                'choice_label' => function() {
+                    return ' ';
+                },
                 'expanded' => true,
                 'multiple' => false,
             ])
             ->add('valueForMoney', ChoiceType::class, [
                 'label' => 'Rapport qualité/prix',
+                'attr' => ['class' => 'form-radio'],
                 'choices' => [
                     '1' => 1,
                     '2' => 2,
@@ -63,6 +76,9 @@ class ReviewFormType extends AbstractType
                     '4' => 4,
                     '5' => 5,
                 ],
+                'choice_label' => function() {
+                    return ' ';
+                },
                 'expanded' => true,
                 'multiple' => false,
             ])
