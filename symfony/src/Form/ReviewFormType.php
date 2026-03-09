@@ -20,7 +20,7 @@ class ReviewFormType extends AbstractType
         $builder
             ->add('texture', ChoiceType::class, [
                 'label' => 'Texture/crème',
-                'attr' => ['class' => 'form-radio'],
+                'attr' => ['class' => 'form-star'],
                 'choices' => [
                     '1' => 1,
                     '2' => 2,
@@ -36,7 +36,7 @@ class ReviewFormType extends AbstractType
             ])
             ->add('dough', ChoiceType::class, [
                 'label' => 'Pâte',
-                'attr' => ['class' => 'form-radio'],
+                'attr' => ['class' => 'form-star'],
                 'choices' => [
                     '1' => 1,
                     '2' => 2,
@@ -52,7 +52,7 @@ class ReviewFormType extends AbstractType
             ])
             ->add('visual', ChoiceType::class, [
                 'label' => 'Aspect visuel',
-                'attr' => ['class' => 'form-radio'],
+                'attr' => ['class' => 'form-star'],
                 'choices' => [
                     '1' => 1,
                     '2' => 2,
@@ -68,7 +68,7 @@ class ReviewFormType extends AbstractType
             ])
             ->add('valueForMoney', ChoiceType::class, [
                 'label' => 'Rapport qualité/prix',
-                'attr' => ['class' => 'form-radio'],
+                'attr' => ['class' => 'form-star'],
                 'choices' => [
                     '1' => 1,
                     '2' => 2,

@@ -25,5 +25,10 @@ import './styles/_cardSpot.css';
 import './styles/_cardFlan.css';
 import './styles/_cardCity.css';
 
+/* SCRIPT JS */
+import starRating from './scripts/starRating.js';
+document.addEventListener('DOMContentLoaded', () => {
+    starRating();
+});
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');

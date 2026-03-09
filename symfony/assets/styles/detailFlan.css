@@ -87,16 +87,23 @@
     display: none;
 }
 
-.form-radio label {
+.form-star label {
     cursor: pointer;
     font-size: 2rem;
-    color: #ccc;
+    color: #9E5B31;
+    transition: color 0.2s ease;
 }
 
-.form-radio label::before {
+.form-star label::before {
+    content: "☆";
+}
+
+.form-star label.active::before {
     content: "★";
 }
 
-.form-radio #text {
-    color:red;
+
+.form-star label.hover::before {
+    content: "★";
 }
+

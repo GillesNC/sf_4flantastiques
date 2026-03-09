@@ -1,8 +1,6 @@
 <article class="card-spot">
-    {% if photo is defined %}
-        {% for photo in spot.photo %}
-            <img src="{{ photo }}" alt="{{ spot.name }}">
-        {% endfor %}
+    {% if spot.documents is not empty %}
+        <img src="{{ asset('uploads/documents/' ~ spot.documents|first.path) }}" alt="{{ spot.name }}">
     {% else %}
         <img src="{{ asset('images/default_spot.webp') }}" alt="Image par défaut du flan">
     {% endif %}
