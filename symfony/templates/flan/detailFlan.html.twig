@@ -1,154 +1,157 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}4Flantastiques - {{ flan.name }} {% endblock %}
+{% block title %}4Flantastiques -
+	{{ flan.name }}
+{% endblock %}
 
 {% block body %}
-    {# SECTION DETAIL FLAN #}
-    <section class="max-w-7xl mx-auto m-25 gap-8">
-        {{ include('components/_breadscrumb.html.twig') }}
-        <div class="gallery-flan grid grid-cols-2 gap-8 mt-10">
-            <div class="bg-primary size-40 rounded-lg overflow-hidden">
-            </div>
-            <div class="flex flex-col justify-center gap-8">
-                <div class="flex flex-col gap-4">
-                    <div class="flex gap-4">
-                        {% for category in flan.category %}
-                            <span class="badge">{{ category }}</span>
-                        {% endfor %}
-                    </div>
-                    <h1 class="text-secondary">{{ flan.name }}</h1>
-                    <p>{{ flan.bio }}</p>
-                </div>
-                <div class="flex justify-between items-center gap-4">
-                    <a href="{{ path('register') }}" class="btn-primary">Soumettre un flan</a>
-                    <a class="text-secondary font-bold">Mettre en favoris <i class="fa-regular fa-heart "></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
+	{# SECTION DETAIL FLAN #}
+	<section class="max-w-7xl mx-auto m-25 gap-8">
+		{{ include('components/_breadscrumb.html.twig') }}
+		<div class="gallery-flan grid grid-cols-2 gap-8 mt-10">
+			<div class="bg-primary size-40 rounded-lg overflow-hidden"></div>
+			<div class="flex flex-col justify-center gap-8">
+				<div class="flex flex-col gap-4">
+					<div class="flex gap-4">
+						{% for category in flan.category %}
+							<span class="badge">{{ category }}</span>
+						{% endfor %}
+					</div>
+					<h1 class="text-secondary">{{ flan.name }}</h1>
+					<p>{{ flan.bio }}</p>
+				</div>
+				<div class="flex justify-between items-center gap-4">
+					<a href="{{ path('register') }}" class="btn-primary">Soumettre un flan</a>
+					<a class="text-secondary font-bold">Mettre en favoris
+						<i class="fa-regular fa-heart "></i>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
 
-    {# SECTION INFOS #}
-    <section class="flex justify-between max-w-7xl mx-auto gap-4">
-        <div class="info-flan flex flex-col gap-4 w-full h-full">
-            <div class="flex justify-center items-center gap-4 bg-secondary rounded-lg">
-                <i class="fa-solid fa-location-dot text-light text-3xl"></i>
-                <h3 class="text-light text-center">Adresse</h3>
-            </div>
-            <div class="info-content">
-                <h3 class="text-center">{{ flan.spot.city.name }}</h3>
-                <p class="text-center">{{ flan.spot.address }}</p>
-            </div>
-        </div>
-        <div class="info-flan flex flex-col gap-4 w-full">
-            <div class="flex justify-center items-center gap-4 bg-secondary rounded-lg">
-                <i class="fa-solid fa-euro-sign text-light text-3xl"></i>
-                <h3 class="text-light text-center">Prix</h3>
-            </div>
-            <div class="info-content">
-                <h3 class="text-center">{{ flan.price }} euros</h3>
-            </div>
-        </div>
-        <div class="info-flan flex flex-col gap-4 w-full">
-            <div class="flex justify-center items-center gap-4 bg-secondary rounded-lg">
-                <i class="fa-solid fa-star text-light text-3xl"></i>
-                <h3 class="text-light text-center">Note</h3>
-            </div>
-            <div class="info-content">
-                <h3 class="text-center">Note Globale</h3>
-                <p class="text-center">{{ flan.avgScore }}/5</p>
-            </div>
-        </div>
-    </section>
+	{# SECTION INFOS #}
+	<section class="flex justify-between max-w-7xl mx-auto gap-4">
+		<div class="info-flan flex flex-col gap-4 w-full h-full">
+			<div class="flex justify-center items-center gap-4 bg-secondary rounded-lg">
+				<i class="fa-solid fa-location-dot text-light text-3xl"></i>
+				<h3 class="text-light text-center">Adresse</h3>
+			</div>
+			<div class="info-content">
+				<h3 class="text-center">{{ flan.spot.city.name }}</h3>
+				<p class="text-center">{{ flan.spot.address }}</p>
+			</div>
+		</div>
+		<div class="info-flan flex flex-col gap-4 w-full">
+			<div class="flex justify-center items-center gap-4 bg-secondary rounded-lg">
+				<i class="fa-solid fa-euro-sign text-light text-3xl"></i>
+				<h3 class="text-light text-center">Prix</h3>
+			</div>
+			<div class="info-content">
+				<h3 class="text-center">{{ flan.price }}
+					euros</h3>
+			</div>
+		</div>
+		<div class="info-flan flex flex-col gap-4 w-full">
+			<div class="flex justify-center items-center gap-4 bg-secondary rounded-lg">
+				<i class="fa-solid fa-star text-light text-3xl"></i>
+				<h3 class="text-light text-center">Note</h3>
+			</div>
+			<div class="info-content">
+				<h3 class="text-center">Note Globale</h3>
+				<p class="text-center">{{ flan.avgScore }}/5</p>
+			</div>
+		</div>
+	</section>
 
-    {# SECTION REVIEWS #}
-    <section class="review flex flex-col max-w-7xl mx-auto mt-50 gap-4">
-        <div class="bg-secondary rounded-lg overflow-hidden flex justify-between items-center gap-4 px-6 relative">
-            <h2 class="text-light">Avis des flanneurs</h2>
-            <div class="mascotte-reviews absolute top-0 right-0">
-                <img src="{{ asset('images/Mascotte5.svg') }}" alt="Mascotte">
-            </div>
-        </div>
-        <div class="flex flex-col gap-10 mt-10">
-            <div class="reviews-list flex justify-between gap-4 w-full">
-                <div class="reviews-box flex flex-col items-center justify-center gap-4">
-                    <h3 class="text-secondary">Jean Dupont</h3>
-                    <p class="text-center font-light">Le meilleur flan que j'ai jamais goûté ! La texture était parfaite
-                        et le goût était divin. Je recommande vivement ce flan à tous les amateurs de desserts.</p>
-                    <p class="font-bold">Note</p>
-                    <div class="rewiews-star"></div>
-                </div>
-                <div class="reviews-box flex flex-col items-center justify-center gap-4">
-                    <h3 class="text-secondary">Jean Dupont</h3>
-                    <p class="text-center font-light">Le meilleur flan que j'ai jamais goûté ! La texture était parfaite
-                        et le goût était divin. Je recommande vivement ce flan à tous les amateurs de desserts.</p>
-                    <p class="font-bold">Note</p>
-                    <div class="rewiews-star"></div>
-                </div>
-                <div class="reviews-box flex flex-col items-center justify-center gap-4">
-                    <h3 class="text-secondary">Jean Dupont</h3>
-                    <p class="text-center font-light">Le meilleur flan que j'ai jamais goûté ! La texture était parfaite
-                        et le goût était divin. Je recommande vivement ce flan à tous les amateurs de desserts.</p>
-                    <p class="font-bold">Note</p>
-                    <div class="rewiews-star"></div>
-                </div>
-                <div class="reviews-box flex flex-col items-center justify-center gap-4">
-                    <h3 class="text-secondary">Jean Dupont</h3>
-                    <p class="text-center font-light">Le meilleur flan que j'ai jamais goûté ! La texture était parfaite
-                        et le goût était divin. Je recommande vivement ce flan à tous les amateurs de desserts.</p>
-                    <p class="font-bold">Note</p>
-                    <div class="rewiews-star"></div>
-                </div>
-            </div>
-            <div class="flex justify-center items-center gap-4">
-                <a href="" class="btn-secondary">Voir d'autres avis</a>
-                {% if not app.user %}
-                    <a href="{{ path('register') }}" class="btn-outline font-bold">Donner votre avis</a>
-                {% endif %}
-            </div>
-            {% if app.user %}
-                <div class="flex flex-col items-center justify-center gap-8 bg-primary rounded-xl p-10">
-                    <h2 class="text-secondary">Donner votre avis sur ce flan</h2>
-                    <div class="form-review w-full">
-                        {{ form_start(formReview) }}
-                        <div class="rating">
-                            {{ form_widget(formReview) }}
-                        </div>
-                        {{ form_end(formReview) }}
-                    </div>
-                </div>
-            {% endif %}
-        </div>
-    </section>
+	{# SECTION REVIEWS #}
+	<section class="review flex flex-col max-w-7xl mx-auto mt-50 gap-4">
+		<div class="bg-secondary rounded-lg overflow-hidden flex justify-between items-center gap-4 px-6 relative">
+			<h2 class="text-light">Avis des flanneurs</h2>
+			<div class="mascotte-reviews absolute top-0 right-0">
+				<img src="{{ asset('images/Mascotte5.svg') }}" alt="Mascotte">
+			</div>
+		</div>
+		<div class="flex flex-col gap-10 mt-10">
+			<div class="reviews-list grid grid-cols-2 justify-between gap-4 w-full">
+				{% for review in reviews %}
+					<div class="reviews-box flex flex-col items-center justify-center gap-4">
+						<h3 class="text-secondary">{{ review.user.pseudo }}</h3>
+						<p class="text-center font-light">{{ review.comment }}</p>
+						<p class="font-bold">Note</p>
+						<div class="rewiews-star">
+							{% for i in 1..5 %}
+								{% if i <= review.globalRating %}
+									<i class="fa-solid fa-star text-secondary"></i>
+								{% else %}
+									<i class="fa-regular fa-star text-secondary"></i>
+								{% endif %}
+							{% endfor %}
+						</div>
+						<div class="flex gap-4">
+							{% if app.user and app.user.id == review.user.id %}
+								<a href="{{ path('review_edit', {'id': review.id}) }}" class="btn-secondary">Modifier</a>
+								<form method="post" action="{{ path('review_delete', {'id': review.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet avis ?');">
+									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ review.id) }}">
+									<button class="btn-outline">Supprimer</button>
+								</form>
+							{% endif %}
+						</div>
+					</div>
+				{% else %}
+					<p class="text-center text-secondary">Aucun avis pour le moment, soyez le premier à donner votre avis !</p>
+				{% endfor %}
+			</div>
+			<div class="flex justify-center items-center gap-4">
+				<a href="" class="btn-secondary">Voir d'autres avis</a>
+				{% if not app.user %}
+					<a href="{{ path('register') }}" class="btn-outline font-bold">Donner votre avis</a>
+				{% endif %}
+			</div>
+			{% if app.user %}
+				<div class="flex flex-col items-center justify-center gap-8 bg-primary rounded-xl p-10">
+					<h2 class="text-secondary">Donner votre avis sur ce flan</h2>
+					<div class="form-review w-full">
+						{{ form_start(formReview) }}
+						<div class="rating">
+							{{ form_widget(formReview) }}
+						</div>
+						{{ form_end(formReview) }}
+					</div>
+				</div>
+			{% endif %}
+		</section>
 
-    {# SECTION MEMBER #}
-    {{ include('components/_member.html.twig') }}
+		{# SECTION MEMBER #}
+		{{ include('components/_member.html.twig') }}
 
-    {# SECTION SPOT #}
-    <section class="flex flex-col max-w-7xl mx-auto mt-50 mb-50 gap-4">
-        <div class="img-spot">
-            {% if spot.documents is not empty %}
-                <img src="{{ asset('uploads/documents/' ~ spot.documents|first.path) }}" alt="{{ spot.name }}">
-            {% else %}
-                <img src="{{ asset('images/default_spot.webp') }}" alt="Image par défaut">
-            {% endif %}
-        </div>
-        <div class="grid grid-cols-2 gap-4">
-            <div class="flex flex-col gap-8 justify-center p-10">
-                <h2 class="text-secondary">{{ spot.name }}</h2>
-                <p>{{ spot.bio }}</p>
-                <a class="btn-primary" href="{{ path('spot_detail', {'id': spot.id}) }}">Voir la fiche de l'enseigne</a>
-            </div>
-            <div class="info-spot flex flex-col justify-center gap-4">
-                <h2 class="text-secondary">Informations</h2>
-                <div class="flex items-center gap-4">
-                    <i class="fa-solid fa-location-dot text-secondary"></i>
-                    <p>{{ spot.address }}, {{ spot.city.name }}</p>
-                </div>
-                <div class="flex items-center gap-4">
-                    <i class="fa-solid fa-globe text-secondary"></i>
-                    <p>{{ spot.website }}</p>
-                </div>
-            </div>
-        </div>
-    </section>
-{% endblock %}
+		{# SECTION SPOT #}
+		<section class="flex flex-col max-w-7xl mx-auto mt-50 mb-50 gap-4">
+			<div class="img-spot">
+				{% if spot.documents is not empty %}
+					<img src="{{ asset('uploads/documents/' ~ spot.documents|first.path) }}" alt="{{ spot.name }}">
+				{% else %}
+					<img src="{{ asset('images/default_spot.webp') }}" alt="Image par défaut">
+				{% endif %}
+			</div>
+			<div class="grid grid-cols-2 gap-4">
+				<div class="flex flex-col gap-8 justify-center p-10">
+					<h2 class="text-secondary">{{ spot.name }}</h2>
+					<p>{{ spot.bio }}</p>
+					<a class="btn-primary" href="{{ path('spot_detail', {'id': spot.id}) }}">Voir la fiche de l'enseigne</a>
+				</div>
+				<div class="info-spot flex flex-col justify-center gap-4">
+					<h2 class="text-secondary">Informations</h2>
+					<div class="flex items-center gap-4">
+						<i class="fa-solid fa-location-dot text-secondary"></i>
+						<p>{{ spot.address }},
+							{{ spot.city.name }}</p>
+					</div>
+					<div class="flex items-center gap-4">
+						<i class="fa-solid fa-globe text-secondary"></i>
+						<p>{{ spot.website }}</p>
+					</div>
+				</div>
+			</div>
+		</section>
+	{% endblock %}
