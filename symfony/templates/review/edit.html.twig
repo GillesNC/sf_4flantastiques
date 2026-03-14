@@ -1,10 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier votre avis sur {% endblock %}
+{% block title %}Avis -
+	{{ review.flan.name }}
+{% endblock %}
 
 {% block body %}
-    {# SECTION DETAIL FLAN #}
-    <section class="max-w-7xl mx-auto m-25 gap-8">
-
-    </section>
+	{# SECTION DETAIL FLAN #}
+	<section class="max-w-7xl mx-auto m-25 gap-8">
+		{{ include('components/_breadscrumb.html.twig') }}
+		<div>
+			<h1 class="text-secondary">Avis de
+				{{ review.user.pseudo }}
+				sur
+				{{ review.flan.name }}</h1>
+		</div>
+		<div class="form flex flex-col max-w-7xl mx-auto p-10 gap-8 border-1 border-solid border-secondary rounded-xl lg:mx-auto">
+			{{ form_start(form) }}
+			{{ form_widget(form) }}
+			<button class="btn btn-primary w-100 mt-4">Sauvegarder mes modifications</button>
+			{{ form_end(form) }}
+		</div>
+	</section>
 {% endblock %}

@@ -84,11 +84,6 @@ class ReviewFormType extends AbstractType
                 'label' => 'Expliquez vos notes en laissez votre avis',
                 'required' => false,
             ])
-
-            ->add('submit', SubmitType::class, [
-                'label' => 'Envoyer votre avis',
-                'attr' => ['class' => 'btn btn-primary mt-3 '],
-            ])
         ;
     }
 

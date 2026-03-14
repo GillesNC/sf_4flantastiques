@@ -56,28 +56,6 @@ final class FlanController extends AbstractController
         ]);
     }
 
-    #[Route('edit/{id}', name: 'review_edit', methods: ['GET', 'POST'])]
-    public function edit(Flan $flan, User $user, Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $user = $this->getUser();
-
-        if ($flan->getUserId() !== $user) {
-            throw $this->createAccessDeniedException('Vous n\'êtes pas autorisé à modifier ce flan.');
-        }
-
-        $form = $this->createForm(ReviewFormType::class, $flan);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-            return $this->redirectToRoute('flan_detail', ['id' => $flan->getId()]);
-        }
-        dd($form->getData());
-        return $this->render('flan/edit.html.twig', [
-            'flan' => $flan,
-            'form' => $form,
-        ]);
-    }
-
     #[Route('/delete/{id}', name: 'review_delete', methods: ['POST'])]
     public function delete(Flan $flan, User $user, Request $request, EntityManagerInterface $entityManager): Response
     {        

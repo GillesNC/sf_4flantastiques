@@ -105,17 +105,18 @@
 			<div class="flex justify-center items-center gap-4">
 				<a href="" class="btn-secondary">Voir d'autres avis</a>
 				{% if not app.user %}
-					<a href="{{ path('register') }}" class="btn-outline font-bold">Donner votre avis</a>
+					<a href="{{ path('app_login') }}" class="btn-outline font-bold">Donner votre avis</a>
 				{% endif %}
 			</div>
 			{% if app.user %}
 				<div class="flex flex-col items-center justify-center gap-8 bg-primary rounded-xl p-10">
 					<h2 class="text-secondary">Donner votre avis sur ce flan</h2>
-					<div class="form-review w-full">
+					<div class="form-review w-full text-center">
 						{{ form_start(formReview) }}
 						<div class="rating">
 							{{ form_widget(formReview) }}
 						</div>
+                        <button class="btn-primary w-100 mt-4">Envoyer votre avis</button>
 						{{ form_end(formReview) }}
 					</div>
 				</div>
