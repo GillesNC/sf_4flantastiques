@@ -27,6 +27,7 @@ import './styles/_cardCity.css';
 
 /* SCRIPT JS */
 import starRating from './scripts/starRating.js';
+
 document.addEventListener('DOMContentLoaded', () => {
     starRating();
 });

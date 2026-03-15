@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Flan;
-use App\Entity\User;
+use App\Entity\Review;
 use App\Form\ReviewFormType;
 use App\Repository\FlanRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -57,16 +57,19 @@ final class FlanController extends AbstractController
     }
 
     #[Route('/delete/{id}', name: 'review_delete', methods: ['POST'])]
-    public function delete(Flan $flan, User $user, Request $request, EntityManagerInterface $entityManager): Response
-    {        
+    public function delete(Review $review, Request $request, EntityManagerInterface $entityManager): Response
+    {
         $user = $this->getUser();
-        if ($flan->getUserId() !== $user) {
-            throw $this->createAccessDeniedException('Vous n\'êtes pas autorisé à supprimer ce flan.');
+        if ($review->getUser() !== $user) {
+            throw $this->createAccessDeniedException('Vous n\'êtes pas autorisé à supprimer cet avis.');
         }
 
-        if ($this->isCsrfTokenValid('delete' . $flan->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($flan);
+        if ($this->isCsrfTokenValid('delete' . $review->getId(), $request->request->get('_token'))) {
+            $flanId = $review->getFlan()->getId();
+            $entityManager->remove($review);
             $entityManager->flush();
+
+            return $this->redirectToRoute('flan_detail', ['id' => $flanId]);
         }
 
         return $this->redirectToRoute('flan');

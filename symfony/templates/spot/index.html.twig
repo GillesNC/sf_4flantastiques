@@ -1,41 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}4Flantastiques - Explorer{% endblock %}
+{% block title %}4Flantastiques - Explorer
+{% endblock %}
 
 {% block body %}
-    <section class="flex flex-col max-w-7xl mx-auto m-25 gap-8">
-        {{ include('components/_breadscrumb.html.twig', {centered: true}) }}
-        <h2 class="text-secondary text-center mb-8">Explorer les meilleurs flans de France</h2>
-        <div class="flex justify-center">
-            <a href="{{ path('register') }}" class="btn-primary">Devenir flanneur</a>
-        </div>
-    </section>
+	<section class="flex flex-col max-w-7xl mx-auto m-25 gap-8">
+		{{ include('components/_breadscrumb.html.twig', {centered: true}) }}
+		<h2 class="text-secondary text-center mb-8">Explorer les meilleurs flans de France</h2>
+		<div class="flex justify-center">
+			<a href="{{ path('register') }}" class="btn-primary">Devenir flanneur</a>
+		</div>
+	</section>
 
-    {# SECTION MAPS #}
-    <section class="map flex flex-col max-w-7xl mx-auto m-25 gap-8 h-150 bg-secondary">
-        <form class="flex flex-col max-w-7xl mx-auto m-25 gap-8">
-            <div class="search flex gap-4">
-                <input type="text" placeholder="Rechercher une ville, un flan..." class="flex-1 p-2">
-                <button type="submit" class="btn-primary">Rechercher</button>
-            </div>
-        </form>
-    </section>
+	{# SECTION MAPS #}
+	<section class="flex flex-col max-w-7xl mx-auto m-25 h-150 items-center">
+		<div class="map-container flex flex-col justify-center items-center h-full w-full">
+			{{ render_map(map, {class: 'map'}) }}
+		</div>
+		<div class="search flex gap-4">
+			<form class="flex items-center w-full">
+				<input type="text" placeholder="Rechercher une enseigne..." class="flex-1 p-2 focus:outline-none">
+				<button type="submit" class="btn-primary">Rechercher</button>
+			</form>
+		</div>
+	</section>
 
-    {# SECTION SPOTS #}
-    <section class="max-w-7xl mx-auto m-50">
-        <div class="flex justify-center gap-4 mb-8">
-            <h2 class="text-secondary text-center mb-8">Toutes les enseignes</h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {% for spot in spots %}
-                {{ include('components/_cardSpot.html.twig') }}
-            {% endfor %}
-        </div>
-    </section>
+	{# SECTION SPOTS #}
+	<section class="max-w-7xl mx-auto m-50">
+		<div class="flex justify-center gap-4 mb-8">
+			<h2 class="text-secondary text-center mb-8">Toutes les enseignes</h2>
+		</div>
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+			{% for spot in spots %}
+				{{ include('components/_cardSpot.html.twig') }}
+			{% endfor %}
+		</div>
+	</section>
 
-    {# SECTION CITIES #}
-    {{ include('components/_cardCity.html.twig') }}
+	{# SECTION CITIES #}
+	{{ include('components/_cardCity.html.twig') }}
 
-    {# SECTION MEMBER #}
-    {{ include('components/_member.html.twig') }}
+	{# SECTION MEMBER #}
+	{{ include('components/_member.html.twig') }}
 {% endblock %}
