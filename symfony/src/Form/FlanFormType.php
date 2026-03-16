@@ -27,7 +27,7 @@ class FlanFormType extends AbstractType
                 'constraints' => [
                     new Assert\File(
                         maxSize: '5M',
-                        mimeTypesMessage: 'Veuillez télécharger une image valide (JPEG, PNG, GIF, WEBP) de moins de 1 Mo.',
+                        mimeTypesMessage: 'Veuillez télécharger une image valide (JPEG, PNG, GIF, WEBP) de moins de 5 Mo.',
                         extensions: ['jpg', 'jpeg', 'png', 'webp', 'gif'],
                     ),
                 ],

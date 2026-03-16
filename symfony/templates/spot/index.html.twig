@@ -18,8 +18,8 @@
 			{{ render_map(map, {class: 'map'}) }}
 		</div>
 		<div class="search flex gap-4">
-			<form class="flex items-center w-full">
-				<input type="text" placeholder="Rechercher une enseigne..." class="flex-1 p-2 focus:outline-none">
+			<form method="get" class="flex items-center w-full">
+				<input type="text" name="search" value="{{ app.request.query.get('search') }}" placeholder="Rechercher une enseigne, une ville..." class="flex-1 p-2 focus:outline-none">
 				<button type="submit" class="btn-primary">Rechercher</button>
 			</form>
 		</div>

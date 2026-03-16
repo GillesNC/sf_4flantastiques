@@ -7,6 +7,7 @@ use App\Entity\Spot;
 use App\Repository\CityRepository;
 use App\Repository\SpotRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\UX\Map\Map;
@@ -17,17 +18,25 @@ use Symfony\UX\Map\InfoWindow;
 final class SpotController extends AbstractController
 {
     #[Route('/explorer', name: 'spot', methods: ['GET'])]
-    public function index(SpotRepository $spotRepository, CityRepository $cityRepository): Response
+    public function index(Request $request, SpotRepository $spotRepository, CityRepository $cityRepository): Response
     {
         $spots = $spotRepository->findAll();
         $cities = $cityRepository->findAll();
 
-        //Section MAP
+        //Search
+        $search = $request->query->get('search');
+        $spotsFiltered = $search ? $spotRepository->findBySearch($search) : $spots;
+
+        //MAP
         $map = (new Map())
             ->center(new Point(48.8566, 2.3522))
             ->zoom(8);
 
-        foreach ($spots as $spot) {
+        if ($search && empty($spotsFiltered)) {
+            $this->addFlash('warning', 'Aucun résultat trouvé pour "' . $search . '"');
+        }
+
+        foreach ($spotsFiltered as $spot) {
             $map->addMarker(new Marker(
                 position: new Point($spot->getLatitude(), $spot->getLongitude()),
                 title: $spot->getName(),
