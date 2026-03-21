@@ -31,10 +31,23 @@ class DashboardController extends AbstractDashboardController
         return [
             yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home'),
 
-            yield MenuItem::section('Users', 'fa fa-users'),
-            yield MenuItem::linkTo(UserCrudController::class, 'Users')
-            ->setAction(Action::INDEX)
+            yield MenuItem::section('Gestion des entités', 'fa-solid fa-database'),
+            yield MenuItem::linkTo(UserCrudController::class, 'Users', 'fa-solid fa-users')
+            ->setAction(Action::INDEX),
             
+            yield MenuItem::linkTo(FlanCrudController::class, 'Flan', 'fa-solid fa-cake-candles')
+            ->setAction(Action::INDEX),
+            
+            yield MenuItem::linkTo(SpotCrudController::class, 'Spots', 'fa-solid fa-map-marker-alt')
+            ->setAction(Action::INDEX),
+            
+            yield MenuItem::linkTo(CityCrudController::class, 'Cities', 'fa-solid fa-city')
+            ->setAction(Action::INDEX),
+            
+            yield MenuItem::linkTo(ReviewCrudController::class, 'Reviews', 'fa-solid fa-star')
+            ->setAction(Action::INDEX),
+
+            yield MenuItem::linkToRoute('Back to the website', 'fa-solid fa-arrow-left', 'app_homepage'),
         ];
     }
 }

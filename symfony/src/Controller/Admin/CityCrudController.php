@@ -2,27 +2,17 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\User;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use App\Entity\City;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class UserCrudController extends AbstractCrudController
+class CityCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return User::class;
-    }
-
-    public function configureCrud(Crud $crud): Crud
-    {
-        return parent::configureCrud($crud)
-        ->setEntityLabelInSingular('Utilisateur')
-        ->setEntityLabelInPlural('Utilisateurs  ')
-        ->setSearchFields(['id', 'title', 'description'])
-        ->setDefaultSort(['id' => 'ASC']);
+        return City::class;
     }
 
     /*
