@@ -25,16 +25,17 @@ final class SpotController extends AbstractController
 
         //Search
         $search = $request->query->get('search');
-        $spotsFiltered = $search ? $spotRepository->findBySearch($search) : $spots;
-
+        $spotsFiltered = $search ? $spotRepository->findBySearch($search) : $spots; 
+        //dd($spotsFiltered);
+        
+        if ($search && empty($spotsFiltered)) {
+            $this->addFlash('warning', 'Aucun résultat trouvé pour "' . $search . '"');
+        }
+        
         //MAP
         $map = (new Map())
             ->center(new Point(48.8566, 2.3522))
             ->zoom(8);
-
-        if ($search && empty($spotsFiltered)) {
-            $this->addFlash('warning', 'Aucun résultat trouvé pour "' . $search . '"');
-        }
 
         foreach ($spotsFiltered as $spot) {
             $map->addMarker(new Marker(
