@@ -25,6 +25,7 @@ final class CityController extends AbstractController
     public function detailCity(City $city): Response
     {
         $spots = $city->getSpots();
+
         return $this->render('city/detailCity.html.twig', [
             'city' => $city,
             'spots' => $spots,
