@@ -69,11 +69,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Review::class, mappedBy: 'user')]
     private Collection $reviews;
 
+    /**
+     * @var Collection<int, Mag>
+     */
+    #[ORM\OneToMany(targetEntity: Mag::class, mappedBy: 'user')]
+    private Collection $mags;
+
     public function __construct()
     {
+        $this->createdAt = new \DateTimeImmutable();
+        $this->isActive = true;
         $this->flans = new ArrayCollection();
         $this->spots = new ArrayCollection();
         $this->reviews = new ArrayCollection();
+        $this->mags = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -295,6 +304,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($review->getUser() === $this) {
                 $review->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Mag>
+     */
+    public function getMags(): Collection
+    {
+        return $this->mags;
+    }
+
+    public function addMag(Mag $mag): static
+    {
+        if (!$this->mags->contains($mag)) {
+            $this->mags->add($mag);
+            $mag->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMag(Mag $mag): static
+    {
+        if ($this->mags->removeElement($mag)) {
+            // set the owning side to null (unless already changed)
+            if ($mag->getUser() === $this) {
+                $mag->setUser(null);
             }
         }
 

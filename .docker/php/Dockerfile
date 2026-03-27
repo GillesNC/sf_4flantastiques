@@ -17,7 +17,8 @@ RUN apk update \
     g++ \
     make \
     openssl-dev \
-    && docker-php-ext-install pdo_mysql \
+    icu-dev \
+    && docker-php-ext-install pdo_mysql intl \
     && pecl install mongodb \
     && docker-php-ext-enable mongodb
 

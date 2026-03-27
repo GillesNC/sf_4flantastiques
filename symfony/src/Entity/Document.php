@@ -52,10 +52,17 @@ class Document
     #[ORM\ManyToMany(targetEntity: Spot::class, inversedBy: 'documents')]
     private Collection $spot;
 
+    /**
+     * @var Collection<int, Mag>
+     */
+    #[ORM\ManyToMany(targetEntity: Mag::class, mappedBy: 'documents')]
+    private Collection $mags;
+
     public function __construct()
     {
         $this->flan = new ArrayCollection();
         $this->spot = new ArrayCollection();
+        $this->mags = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -193,6 +200,33 @@ class Document
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Mag>
+     */
+    public function getMags(): Collection
+    {
+        return $this->mags;
+    }
+
+    public function addMag(Mag $mag): static
+    {
+        if (!$this->mags->contains($mag)) {
+            $this->mags->add($mag);
+            $mag->addDocument($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMag(Mag $mag): static
+    {
+        if ($this->mags->removeElement($mag)) {
+            $mag->removeDocument($this);
+        }
+
         return $this;
     }
 }

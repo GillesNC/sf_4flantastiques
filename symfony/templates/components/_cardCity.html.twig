@@ -1,19 +1,20 @@
-<section class="city max-w-7xl mx-auto m-50">
-    <div class="flex items-center justify-between gap-4 mb-8">
+<section class="city max-w-7xl mx-auto m-50 swiper">
+    <div class="flex items-center justify-between gap-4 mb-8 swiper-wrapper">
         <h2 class="text-secondary text-center mb-8">Nos enseignes par ville</h2>
         <a href="{{ path('city') }}" class="btn-secondary">Découvrir toutes les villes</a>
     </div>
     <div class="flex gap-8">
         {% for city in cities %}
             <a href="{{ path('city_detail', {'id': city.id}) }}">
-                <article class="card-city">
+                <article class="card-city swiper-slide">
                     <div class="card-content-city relative">
-                        <img
-                            src="https://images.unsplash.com/photo-1609971757431-439cf7b4141b?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                            class="backdrop:bg-black/50"
-                            alt="">
-                        <div class="absolute inset-0 bg-opacity-50 flex items-center justify-center">
-                            <h3 class="card-title text-secondary text-center">{{ city.name }}</h3>
+                    {% if city.photo %}
+                        <img src="{{ asset('uploads/documents/' ~ city.photo.path) }}" alt="{{ city.name }}" class="card-image-city">
+                    {% else %}
+                        <img src="{{ asset('uploads/documents/default_city.jpg') }}" alt="Image par défaut" class="card-image-city">
+                    {% endif %}
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <h3 class="card-title text-primary text-center">{{ city.name }}</h3>
                         </div>
                     </div>
                 </article>
