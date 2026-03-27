@@ -27,6 +27,7 @@ import './styles/_cardCity.css';
 
 /* SCRIPT JS */
 import starRating from './scripts/starRating.js';
+import swiper from './scripts/swiper.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     starRating();

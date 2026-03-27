@@ -31,7 +31,7 @@ class DashboardController extends AbstractDashboardController
         return [
             yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home'),
 
-            yield MenuItem::section('Gestion des entités', 'fa-solid fa-database'),
+            yield MenuItem::section('Gestion des entités'),
             yield MenuItem::linkTo(UserCrudController::class, 'Users', 'fa-solid fa-users')
             ->setAction(Action::INDEX),
             
