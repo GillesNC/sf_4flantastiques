@@ -16,9 +16,14 @@
         </div>
     </section>
 
+    {# SECTION FLAN #}
     <section class="flans max-w-7xl mx-auto m-50">
         <h2 class="text-secondary text-center mb-8">Top 50 des meilleurs flans</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 h-300 bg-secondary"></div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {% for flan in flans %}
+                    {{ include('components/_cardFlan.html.twig') }}
+                {% endfor %}
+        </div>
     </section>
 
     <section class="blocSEO flex flex-col max-w-7xl mx-auto m-25 gap-8">

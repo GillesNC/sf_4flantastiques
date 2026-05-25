@@ -1,0 +1,35 @@
+.hero-aboutUs {
+    background-image: url('../images/aboutUs.webp');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    min-height: 100vh;
+    margin-top: -128px;
+}
+
+.story{
+    background-image: url('../images/footer.svg');
+    background-size: cover;
+    background-position: bottom;
+    color: var(--color-light);
+    min-height: 600px;
+    margin-top: -60px;
+}
+
+.mission-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 20px;
+    background-color: var(--color-primary);
+    border-radius: 10px;
+    max-width: 80vw;
+    max-height: 50vh;
+}
+
+.mission-shape {
+    background-image: url('../images/Shape2.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}

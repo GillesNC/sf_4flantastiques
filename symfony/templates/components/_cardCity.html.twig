@@ -1,0 +1,32 @@
+<section class="city max-w-7xl mx-auto m-50">
+    <div class="flex items-center justify-between gap-4 mb-8">
+        <h2 class="text-secondary text-center mb-8">Nos enseignes par ville</h2>
+        <a href="{{ path('city') }}" class="btn-secondary">Découvrir toutes les villes</a>
+    </div>
+    <article class="swiper">
+        <div class="flex swiper-wrapper">
+            {% for city in cities %}
+                <a class="swiper-slide" href="{{ path('city_detail', {'id': city.id}) }}">
+                    <article class="card-city">
+                        <div class="card-content-city relative">
+                            {% if city.photo %}
+                                <img src="{{ asset('uploads/documents/' ~ city.photo.path) }}" alt="{{ city.name }}"
+                                     class="card-image-city">
+                            {% else %}
+                                <img src="{{ asset('uploads/documents/default_city.jpg') }}" alt="Image par défaut"
+                                     class="card-image-city">
+                            {% endif %}
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <h3 class="card-title text-primary text-center">{{ city.name }}</h3>
+                            </div>
+                        </div>
+                    </article>
+                </a>
+            {% endfor %}
+        </div>
+        <div class="swiper-pagination">
+            <button class="swiper-button-prev"></button>
+            <button class="swiper-button-next"></button>
+        </div>
+    </article>
+</section>

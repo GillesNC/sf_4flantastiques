@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Document;
 use App\Entity\Flan;
 use App\Entity\Spot;
 use App\Entity\User;
@@ -75,20 +76,14 @@ final class ProfileController extends AbstractController
             $photoFile = $formFlan->get('photo')->getData();
 
             if ($photoFile) {
-                $originalFilename = pathinfo($photoFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename . '-' . uniqid() . '.' . $photoFile->guessExtension();
+//            dd($photoFile);
+                $document = new Document();
 
-                try {
-                    $photoFile->move(
-                        $this->getParameter('photos_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    $this->addFlash('error', 'Erreur lors du téléchargement de la photo : ' . $e->getMessage());
-                }
+                $document->setDocumentFile($photoFile);
+                $document->setCreatedAt(new \DateTimeImmutable());
 
-                $flan->setPhoto([$newFilename]);
+                $entityManager->persist($document);
+                $flan->addDocument($document);
             }
 
             $entityManager->persist($flan);
@@ -96,6 +91,8 @@ final class ProfileController extends AbstractController
 
             $this->addFlash('success', 'Flan ajouté avec succès !');
             return $this->redirectToRoute('profile_show', ['id' => $user->getId()]);
+        } else if ($formFlan->isSubmitted() && !$formFlan->isValid()) {
+            $this->addFlash('error', 'Erreur lors de l\'ajout du flan. Veuillez vérifier les informations saisies.');
         }
 
         // TRAITEMENT DU FORMULAIRE SPOT
@@ -105,20 +102,12 @@ final class ProfileController extends AbstractController
             $photoFile = $formSpot->get('photo')->getData();
 
             if ($photoFile) {
-                $originalFilename = pathinfo($photoFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename . '-' . uniqid() . '.' . $photoFile->guessExtension();
+                $document = new Document();
+                $document->setDocumentFile($photoFile);
+                $document->setCreatedAt(new \DateTimeImmutable());
 
-                try {
-                    $photoFile->move(
-                        $this->getParameter('photos_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    $this->addFlash('error', 'Erreur lors du téléchargement de la photo : ' . $e->getMessage());
-                }
-
-                $spot->setPhoto([$newFilename]);
+                $entityManager->persist($document);
+                $spot->addDocument($document);
             }
 
             $entityManager->persist($spot);
@@ -126,6 +115,8 @@ final class ProfileController extends AbstractController
 
             $this->addFlash('success', 'Spot ajouté avec succès !');
             return $this->redirectToRoute('profile_show', ['id' => $user->getId()]);
+        } else if ($formSpot->isSubmitted() && !$formSpot->isValid()) {
+            $this->addFlash('error', 'Erreur lors de l\'ajout du spot. Veuillez vérifier les informations saisies.');
         }
 
         return $this->render('profile/add.html.twig', [

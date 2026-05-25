@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}4Flantastiques - Qui sommes nous ?{% endblock %}
+
+{% block body %}
+    <section class="hero-aboutUs flex gap-8 justify-center items-center bg-primary-50 bg-blend-overlay">
+        <div class="flex flex-col justify-center gap-4">
+            <h1 class="text-secondary text-center">Qui sommes nous ?</h1>
+            <p class="text-light">On référence, on goûte, on note. Trouve le flan parfait près de chez toi.</p>
+            <div class="flex justify-center gap-4">
+                <a href="{{ path('register') }}" class="btn-primary">Devenir flanneur</a>
+                <a href="{{ path('ranking') }}" class="btn-outline">Découvrir notre classement</a>
+            </div>
+        </div>
+    </section>
+
+    {# SECTION STORY #}
+    <section class="story relative z-10 w-full flex items-center justify-center mb-50">
+        <div class="max-w-7xl mx-auto w-full py-10 flex gap-8">
+            <div class="flex flex-col justify-center gap-4 max-w-[80vh]">
+                <h1 class="text-light">Notre histoire</h1>
+                <p>Tout est parti d’une question simple : où trouver un flan vraiment mémorable près de chez soi ?
+                    De fil en aiguille (et de part en part), nous avons réuni des passionnés, des artisans et des
+                    curieux. Aujourd’hui, Les 4 Flantastiques répertorie des flans partout en France, avec des avis
+                    d’ambassadeurs et une méthodologie transparente pour comparer prix, goût et texture. Notre objectif
+                    : mettre en lumière les bonnes adresses et donner envie de (re)découvrir ce classique de la
+                    pâtisserie.</p>
+            </div>
+            <div class="mascotte">
+                <img src="{{ asset('images/Mascotte1.svg') }}" alt="Mascotte 4 Flantastiques">
+            </div>
+        </div>
+    </section>
+
+    {# SECTION MISSION #}
+    <section class=" mission flex flex-col justify-center max-w-7xl mx-auto w-full gap-2 mb-50">
+        <h2 class="text-center text-secondary">Notre mission</h2>
+        <p class="text-center"
+        >Nous aidons chacun à trouver facilement un excellent flan, en rendant l’information fiable, locale et plaisante à explorer.</p>
+        <div class="flex justify-center items-center gap-4">
+            <div class="mission-content">
+                <h3 class="text-secondary">Transparence</h3>
+                <p>Chaque flan est noté sur 10 selon 5 critères pondérés : Goût (×3), Texture (×2), Pâte (×2), Visuel (×1), Rapport qualité-prix (×2). La méthode est publique et la moyenne est calculée automatiquement.</p>
+            </div>
+            <div class="mission-shape">
+                <img src="{{ asset('images/Mascotte2.svg') }}" alt="">
+            </div>
+        </div>
+        <div class="flex justify-center items-center gap-4">
+            <div class="mission-shape">
+                <img src="{{ asset('images/Mascotte3.svg') }}" alt="">
+            </div>
+            <div class="mission-content">
+                <h3 class="text-secondary">Indépendance</h3>
+                <p>Les avis proviennent d’ambassadeurs validés. Aucune note sponsorisée. Les enseignes ne peuvent ni modifier ni supprimer un avis publié.</p>
+            </div>
+        </div>
+        <div class="flex justify-center items-center gap-4">
+            <div class="mission-content">
+                <h3 class="text-secondary">Exigence & Plaisir</h3>
+                <p>Nous aimons le flan… et nous le prenons au sérieux : informations vérifiées, photos nettes, dates de dégustation, prix par part indiqués pour comparer.</p>
+            </div>
+            <div class="mission-shape">
+                <img src="{{ asset('images/Mascotte4.svg') }}" alt="">
+            </div>
+        </div>
+        <div class="flex justify-center items-center gap-4">
+            <div class="mission-shape">
+                <img src="{{ asset('images/Mascotte1.svg') }}" alt="">
+            </div>
+            <div class="mission-content">
+                <h3 class="text-secondary">Communauté</h3>
+                <p>Un système léger de points valorise les contributions utiles (nouvelles adresses, avis détaillés, belles photos). L’objectif : progresser ensemble, pas faire la course.</p>
+            </div>
+        </div>
+    </section>
+
+    {# SECTION EXPLORER #}
+    <section class="discover h-150 flex flex-col items-center justify-center gap-4 mb-50">
+        <div class="text-center flex flex-col gap-4">
+            <h2 class="text-light mb-4">Explorer la carte des flans de France</h2>
+            <p class="text-light">Zoome sur ta ville, filtre par note, prix/part et type (vanille, pistache, chocolat…).
+                Découvre où se cachent les flans qui valent vraiment le détour.</p>
+        </div>
+        <a href="#" class="btn-secondary">Explorer</a>
+    </section>
+
+    {# SECTION MEMBER #}
+    {{ include('components/_member.html.twig') }}
+{% endblock %}

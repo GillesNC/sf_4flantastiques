@@ -3,54 +3,63 @@
 {% block title %}4Flantastiques - Le guide du meilleur flan de France{% endblock %}
 
 {% block stylesheets %}
-    {{ parent() }}
+    {#    {{ parent() }} #}
     <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
 {% endblock %}
 
 {% block body %}
-	<section class="hero flex max-w-7xl mx-auto m-25 gap-8">
-		<div class="flex flex-col justify-center gap-4">
-			<h1 class="text-secondary">4 Flantastiques, votre guide du meilleur flan de France</h1>
-			<p>On référence, on goûte, on note. Trouve le flan parfait près de chez toi.</p>
-			<div class="flex gap-4">
-				<a href="{{ path('register') }}" class="btn-primary">Devenir flanneur</a>
-				<a href="{{ path('ranking') }}" class="btn-outline">Découvrir notre classement</a>
-			</div>
-		</div>
-		<div class="mascotte">
-			<img src="{{ asset('images/Mascotte1.svg') }}" alt="Mascotte 4 Flantastiques">
-		</div>
-	</section>
+    <section class="hero flex max-w-7xl mx-auto m-25 gap-8">
+        <div class="flex flex-col justify-center gap-4">
+            <h1 class="text-secondary">4 Flantastiques, votre guide du meilleur flan de France</h1>
+            <p>On référence, on goûte, on note. Trouve le flan parfait près de chez toi.</p>
+            <div class="flex gap-4">
+                <a href="{{ path('register') }}" class="btn-primary">Devenir flanneur</a>
+                <a href="{{ path('ranking') }}" class="btn-outline">Découvrir notre classement</a>
+            </div>
+        </div>
+        <div class="mascotte">
+            <img src="{{ asset('images/Mascotte1.svg') }}" alt="Mascotte 4 Flantastiques">
+        </div>
+    </section>
 
-	<section class="flans max-w-7xl mx-auto m-50">
-		<h2 class="text-secondary text-center mb-8">Nos coups de coeurs du mois</h2>
-		<div class="grid grid-cols-1 md:grid-cols-3 gap-8 h-300 bg-secondary"></div>
-	</section>
+    {# SECTION FLAN #}
+    <section class="max-w-7xl mx-auto m-50">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="title-flan flex flex-col justify-center gap-4 bg-primary h-full">
+                <h2 class="text-secondary">Nos coups de coeurs du mois</h2>
+                <a href="{{ path('flan') }}" class="btn-primary">Découvrir tous nos flans</a>
+            </div>
+            {% for flan in flans %}
+                {{ include('components/_cardFlan.html.twig') }}
+            {% endfor %}
+        </div>
+    </section>
 
-	<section class="discover h-150 flex flex-col items-center justify-center gap-4 mb-50">
-		<div class="text-center flex flex-col gap-4">
-			<h2 class="text-light mb-4">Explorer la carte des flans de France</h2>
-			<p class="text-light">Zoome sur ta ville, filtre par note, prix/part et type (vanille, pistache, chocolat…). Découvre où se cachent les flans qui valent vraiment le détour.</p>
-		</div>
-		<a href="#" class="btn-secondary">Explorer</a>
-	</section>
+    {# SECTION EXPLORER #}
+    <section class="discover h-150 flex flex-col items-center justify-center gap-4 mb-50">
+        <div class="text-center flex flex-col gap-4">
+            <h2 class="text-light mb-4">Explorer la carte des flans de France</h2>
+            <p class="text-light">Zoome sur ta ville, filtre par note, prix/part et type (vanille, pistache, chocolat…).
+                Découvre où se cachent les flans qui valent vraiment le détour.</p>
+        </div>
+        <a href="{{ path('spot') }}" class="btn-secondary">Explorer</a>
+    </section>
 
-	<section class="city max-w-7xl mx-auto m-50">
-		<div class="flex items-center justify-between gap-4 mb-8">
-			<h2 class="text-secondary text-center mb-8">Nos flans par ville</h2>
-			<a href="#" class="btn-secondary">Découvrir toutes les villes</a>
-		</div>
-		<div class="grid grid-cols-1 md:grid-cols-3 gap-8 h-200 bg-secondary"></div>
-	</section>
+    {# SECTION CITIES #}
+    {{ include('components/_cardCity.html.twig') }}
 
-	{{ include('components/_member.html.twig') }}
+    {# SECTION MEMBER #}
+    {{ include('components/_member.html.twig') }}
 
-	<section class="blog relative h-150 bg-primary flex flex-col items-center justify-center gap-4">
-		<div class="text-center flex flex-col gap-4">
-			<h2 class="text-secondary text-center">Le Mag</h2>
-			<p class="text-dark text-center px-80">Recettes, techniques, culture flan et actus des meilleures adresses. Un seul objectif : te donner faim… intelligemment.</p>
-		</div>
-		<a href="#" class="btn-primary mt-4">Lire tous nos articles</a>
-        <img src="{{ asset('images/Mascotte4.svg') }}" alt="Mascotte 4 Flantastiques" class="absolute -bottom-20 -right-0 w-96 z-50"></img>
-	</section>
+    {# SECTION MAG #}
+    <section class="blog relative h-150 bg-primary flex flex-col items-center justify-center gap-4">
+        <div class="text-center flex flex-col gap-4">
+            <h2 class="text-secondary text-center">Le Mag</h2>
+            <p class="text-dark text-center px-80">Recettes, techniques, culture flan et actus des meilleures adresses.
+                Un seul objectif : te donner faim… intelligemment.</p>
+        </div>
+        <a href="#" class="btn-primary mt-4">Lire tous nos articles</a>
+        <img src="{{ asset('images/Mascotte4.svg') }}" alt="Mascotte 4 Flantastiques"
+             class="absolute -bottom-20 -right-0 w-96 z-50"></img>
+    </section>
 {% endblock %}

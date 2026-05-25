@@ -20,7 +20,7 @@ class Flan
     private ?string $name = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $category = null;
+    private ?array $category = [];
 
     #[ORM\Column(nullable: true)]
     private ?array $photo = null;
@@ -61,9 +61,19 @@ class Flan
     #[ORM\ManyToMany(targetEntity: Document::class, mappedBy: 'flan')]
     private Collection $documents;
 
+    #[ORM\ManyToOne(inversedBy: 'flans')]
+    private ?Spot $spot = null;
+
+    /**
+     * @var Collection<int, Review>
+     */
+    #[ORM\OneToMany(targetEntity: Review::class, mappedBy: 'flan')]
+    private Collection $reviews;
+
     public function __construct()
     {
         $this->documents = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -83,12 +93,12 @@ class Flan
         return $this;
     }
 
-    public function getCategory(): ?string
+    public function getCategory(): ?array
     {
         return $this->category;
     }
 
-    public function setCategory(?string $category): static
+    public function setCategory(?array $category): static
     {
         $this->category = $category;
 
@@ -249,6 +259,48 @@ class Flan
     {
         if ($this->documents->removeElement($document)) {
             $document->removeFlan($this);
+        }
+
+        return $this;
+    }
+
+    public function getSpot(): ?Spot
+    {
+        return $this->spot;
+    }
+
+    public function setSpot(?Spot $spot): static
+    {
+        $this->spot = $spot;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Review>
+     */
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
+    }
+
+    public function addReview(Review $review): static
+    {
+        if (!$this->reviews->contains($review)) {
+            $this->reviews->add($review);
+            $review->setFlan($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReview(Review $review): static
+    {
+        if ($this->reviews->removeElement($review)) {
+            // set the owning side to null (unless already changed)
+            if ($review->getFlan() === $this) {
+                $review->setFlan(null);
+            }
         }
 
         return $this;

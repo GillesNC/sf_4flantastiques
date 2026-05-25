@@ -19,6 +19,21 @@ class SpotRepository extends ServiceEntityRepository
     //    /**
     //     * @return Spot[] Returns an array of Spot objects
     //     */
+
+    public function findBySearch($value): array
+    {
+        $value = '%' . $value . '%';
+
+        return $this->createQueryBuilder('s')
+            ->join('s.city', 'c')
+            ->andWhere('s.name LIKE :search')
+            ->orWhere('c.name LIKE :search')
+            ->orWhere('s.postalCode LIKE :search')
+            ->setParameter('search', $value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
     //    public function findByExampleField($value): array
     //    {
     //        return $this->createQueryBuilder('s')

@@ -25,4 +25,24 @@ return [
     '@hotwired/turbo' => [
         'version' => '7.3.0',
     ],
+    'leaflet' => [
+        'version' => '1.9.4',
+    ],
+    'leaflet/dist/leaflet.min.css' => [
+        'version' => '1.9.4',
+        'type' => 'css',
+    ],
+    '@symfony/ux-leaflet-map' => [
+        'path' => './vendor/symfony/ux-leaflet-map/assets/dist/map_controller.js',
+    ],
+    'swiper' => [
+        'version' => '12.1.3',
+    ],
+    'swiper/swiper-bundle.min.css' => [
+        'version' => '12.1.3',
+        'type' => 'css',
+    ],
+    'swiper/modules' => [
+        'version' => '12.1.3',
+    ],
 ];

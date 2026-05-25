@@ -7,8 +7,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: DocumentRepository::class)]
+#[Vich\Uploadable]
 class Document
 {
     #[ORM\Id]
@@ -18,9 +21,6 @@ class Document
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $name = null;
-
-    #[ORM\Column(type: Types::JSON, nullable: true)]
-    private ?string $file = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $type = null;
@@ -34,6 +34,12 @@ class Document
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[Vich\UploadableField(mapping: 'documents', fileNameProperty: 'path', size: 'size', mimeType: 'type', originalName: 'name')]
+    private ?File $documentFile = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $updatedAt = null;
+
     /**
      * @var Collection<int, Flan>
      */
@@ -46,10 +52,17 @@ class Document
     #[ORM\ManyToMany(targetEntity: Spot::class, inversedBy: 'documents')]
     private Collection $spot;
 
+    /**
+     * @var Collection<int, Mag>
+     */
+    #[ORM\ManyToMany(targetEntity: Mag::class, mappedBy: 'documents')]
+    private Collection $mags;
+
     public function __construct()
     {
         $this->flan = new ArrayCollection();
         $this->spot = new ArrayCollection();
+        $this->mags = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -65,18 +78,6 @@ class Document
     public function setName(?string $name): static
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getFile(): ?string
-    {
-        return $this->file;
-    }
-
-    public function setFile(?string $file): static
-    {
-        $this->file = $file;
 
         return $this;
     }
@@ -173,6 +174,58 @@ class Document
     public function removeSpot(Spot $spot): static
     {
         $this->spot->removeElement($spot);
+
+        return $this;
+    }
+
+    public function setDocumentFile(?File $documentFile = null): void
+    {
+        $this->documentFile = $documentFile;
+
+        if (null !== $documentFile) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getDocumentFile(): ?File
+    {
+        return $this->documentFile;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
+    {
+        $this->updatedAt = $updatedAt;
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Mag>
+     */
+    public function getMags(): Collection
+    {
+        return $this->mags;
+    }
+
+    public function addMag(Mag $mag): static
+    {
+        if (!$this->mags->contains($mag)) {
+            $this->mags->add($mag);
+            $mag->addDocument($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMag(Mag $mag): static
+    {
+        if ($this->mags->removeElement($mag)) {
+            $mag->removeDocument($this);
+        }
 
         return $this;
     }

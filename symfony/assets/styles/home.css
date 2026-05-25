@@ -12,3 +12,8 @@
     background-position: center;
     background-size: cover;
 }
+
+.title-flan {
+    border-radius: 10px;
+    padding: 30px;
+}

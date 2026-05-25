@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}4Flantastiques - Toutes les villes{% endblock %}
+
+{% block body %}
+    <section class="flex flex-col max-w-7xl mx-auto m-25 gap-8">
+        {{ include('components/_breadscrumb.html.twig', {centered: true}) }}
+        <h2 class="text-secondary text-center mb-8">Retrouvez toutes les meilleurs flans de chaque ville</h2>
+        <div class="flex justify-center">
+            <a href="{{ path('register') }}" class="btn-primary">Devenir flanneur</a>
+        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto m-50">
+        <div class="grid grid-cols-3 md:grid-cols-3 gap-8">
+            {% for city in cities %}
+                <a href="{{ path('city_detail', {'id': city.id}) }}">
+                    <article class="card-city">
+                        <div class="card-content-city relative">
+                            {% if city.photo %}
+                                <img src="{{ asset('uploads/documents/' ~ city.photo.path) }}" alt="{{ city.name }}" class="w-full h-full object-cover">
+                            {% else %}
+                                <img src="{{ asset('uploads/documents/default_city.webp') }}" alt="Image par défaut" class="w-full h-full object-cover">
+                            {% endif %}
+                            <div class="absolute inset-0 bg-black/65 flex items-center justify-center">
+                                <h3 class="card-title text-primary text-center">{{ city.name }}</h3>
+                            </div>
+                        </div>
+                    </article>
+                </a>
+            {% endfor %}
+        </div>
+    </section>
+
+    {# SECTION MEMBER #}
+    {{ include('components/_member.html.twig') }}
+{% endblock %}

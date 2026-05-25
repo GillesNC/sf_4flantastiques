@@ -26,12 +26,11 @@ class FlanFormType extends AbstractType
                 'required' => false,
                 'constraints' => [
                     new Assert\File(
-                        maxSize: '1M',
-                        mimeTypesMessage: 'Veuillez télécharger une image valide (JPEG, PNG, GIF, WEBP) de moins de 1 Mo.',
+                        maxSize: '5M',
+                        mimeTypesMessage: 'Veuillez télécharger une image valide (JPEG, PNG, GIF, WEBP) de moins de 5 Mo.',
                         extensions: ['jpg', 'jpeg', 'png', 'webp', 'gif'],
                     ),
                 ],
-                'multiple' => true,
             ])
 
             ->add('name', TextType::class, [
@@ -67,7 +66,7 @@ class FlanFormType extends AbstractType
     {
         $resolver->setDefaults([
             // Configure your form options here
-            'data_class' => flan::class,
+            'data_class' => Flan::class,
         ]);
     }
 }
