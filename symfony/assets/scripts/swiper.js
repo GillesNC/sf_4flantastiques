@@ -8,10 +8,6 @@ const swiper = new Swiper('.swiper', {
     loop: true,
     spaceBetween: 30,
     slidesPerView: 4,
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    },
     breakpoints: {
         1400: {
             slidesPerView: 3.5,

@@ -74,4 +74,7 @@ final class FlanController extends AbstractController
 
         return $this->redirectToRoute('flan');
     }
+
+    //filtre flans
+
 }

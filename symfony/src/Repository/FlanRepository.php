@@ -16,28 +16,33 @@ class FlanRepository extends ServiceEntityRepository
         parent::__construct($registry, Flan::class);
     }
 
-    //    /**
-    //     * @return Flan[] Returns an array of Flan objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('f')
-    //            ->andWhere('f.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('f.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    //Fonction filtre flan
+    public function findbyFilters(array $filters): array
+    {
+        $queryBuilder = $this->createQueryBuilder('f');
 
-    //    public function findOneBySomeField($value): ?Flan
-    //    {
-    //        return $this->createQueryBuilder('f')
-    //            ->andWhere('f.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+        if (!empty($filters['ville'])) {
+            $queryBuilder->andWhere('f.city = :ville')
+                ->setParameter('ville', $filters['ville']);
+        }
+
+        if (!empty($filters['prix_max'])) {
+            $queryBuilder->andWhere('f.price <= :prix_max')
+                ->setParameter('prix_max', $filters['prix_max']);
+        }
+
+        if (!empty($filters['note_min'])) {
+            $queryBuilder->andWhere('f.avgScore >= :note_min')
+                ->setParameter('note_min', $filters['note_min']);
+        }
+
+        if (!empty($filters['tri']) && $filters['tri'] === 'nouveaute') {
+            $queryBuilder->orderBy('f.createdAt', 'DESC');
+        }
+
+        $queryBuilder->andWhere('f.status = :status')
+            ->setParameter('status', 'published');
+
+        return $queryBuilder->getQuery()->getResult();
+    }
 }
