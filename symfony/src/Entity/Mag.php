@@ -23,7 +23,7 @@ class Mag
     private ?string $slug = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $catÃegory = null;
+    private ?string $category = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $content = null;
@@ -80,14 +80,14 @@ class Mag
         return $this;
     }
 
-    public function getCatÃegory(): ?string
+    public function getCategory(): ?string
     {
-        return $this->catÃegory;
+        return $this->category;
     }
 
-    public function setCatÃegory(?string $catÃegory): static
+    public function setCategory(?string $category): static
     {
-        $this->catÃegory = $catÃegory;
+        $this->category = $category;
 
         return $this;
     }
