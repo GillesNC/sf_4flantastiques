@@ -1,5 +1,5 @@
 .mascotte{
-    background-image: url('../images/Shape.svg');
+    background-image: url('../../images/Shape.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -7,7 +7,7 @@
 }
 
 .discover {
-    background-image: url('../images/Image12.webp');
+    background-image: url('../../images/Image12.webp');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

@@ -30,7 +30,7 @@
 }
 
 .mascotte-reviews {
-    background-image: url('../images/Shape.svg');
+    background-image: url('../../images/Shape.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

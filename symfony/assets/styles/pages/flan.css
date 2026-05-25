@@ -1,0 +1,102 @@
+/* SIDEBAR FILTRE */
+.filter {
+    width: 280px;
+    min-width: 280px;
+    background-color: var(--color-primary);
+    border-radius: 20px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    height: fit-content;
+}
+
+.filter h3 {
+    font-size: 22px;
+    color: var(--color-secondary);
+    margin-bottom: 4px;
+}
+
+/* SELECT VILLE */
+.filter-select {
+    width: 100%;
+    padding: 10px 16px;
+    border-radius: 100px;
+    border: 2px solid var(--color-secondary);
+    background-color: var(--color-light);
+    color: var(--color-secondary);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='%23563326' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+}
+
+/* TAGS À DÉCOUVRIR */
+.filter-tag input[type="checkbox"] {
+    display: none;
+}
+
+.filter-tag {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.filter-tag span {
+    padding: 6px 16px;
+    border-radius: 100px;
+    border: 2px solid var(--color-secondary);
+    color: var(--color-secondary);
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filter-tag input[type="checkbox"]:checked + span {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+}
+
+/* SLIDER PRIX */
+.filter-range {
+    width: 100%;
+    height: 4px;
+    accent-color: var(--color-tertiary);
+    cursor: pointer;
+}
+
+.filter-range-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: var(--color-secondary);
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+/* BOUTONS ÉTOILES */
+.filter-star input[type="radio"] {
+    display: none;
+}
+
+.filter-star span {
+    display: inline-flex;
+    padding: 4px 12px;
+    border-radius: 100px;
+    border: 2px solid var(--color-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 14px;
+}
+
+.filter-star input[type="radio"]:checked + span {
+    background-color: var(--color-secondary);
+}
+
+.filter-star input[type="radio"]:checked + span i {
+    color: var(--color-primary);
+}

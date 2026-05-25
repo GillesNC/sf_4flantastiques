@@ -11,23 +11,99 @@
         </div>
     </section>
 
-    {# SECTION FLAN & FILTRE #}
     <section class="flex max-w-7xl mx-auto m-20 gap-8">
-        <div class="filter w-full bg-primary flex flex-col gap-8 sticky top-10">
-            <h3 class="text-secondary">Choisir une ville</h3>
-            <h3 class="text-secondary">À découvrir</h3>
-            <h3 class="text-secondary">Prix</h3>
-            <h3 class="text-secondary">Note</h3>
-        </div>
-        <div class="grid grid-cols-2 md:grid-cols-2 gap-8">
+
+        {# SIDEBAR FILTRES #}
+        <form method="GET" action="{{ path('flan') }}" class="filter sticky top-10">
+
+            {# VILLE #}
+            <div>
+                <h3>Choisir une ville</h3>
+                <select name="ville" class="filter-select">
+                    <option value="">Sélectionner une ville</option>
+                    {% for city in cities %}
+                        <option value="{{ city.id }}" {% if filters.ville == city.id %}selected{% endif %}>
+                            {{ city.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            {# À DÉCOUVRIR #}
+            <div>
+                <h3>À découvrir...</h3>
+                <div class="filter-tag">
+                    <label class="flex items-center gap-2">
+                        <input type="checkbox" name="tri[]" value="nouveaute"
+                               {% if 'nouveaute' in filters.tri %}checked{% endif %}>
+                        <span>Nouveau</span>
+                    </label>
+                    <label class="flex items-center gap-2">
+                        <input type="checkbox" name="tri[]" value="coupdecoeur"
+                               {% if 'coupdecoeur' in filters.tri %}checked{% endif %}>
+                        <span>Coup de cœurs</span>
+                    </label>
+                    <label class="flex items-center gap-2">
+                        <input type="checkbox" name="tri[]" value="top50"
+                               {% if 'top50' in filters.tri %}checked{% endif %}>
+                        <span>Top 50</span>
+                    </label>
+                </div>
+            </div>
+
+            {# PRIX #}
+            <div>
+                <h3>Prix</h3>
+                <input
+                    type="range"
+                    name="prix_max"
+                    min="0" max="10" step="0.5"
+                    value="{{ filters.prix_max is not null ? filters.prix_max : 10 }}" class="filter-range"
+                >
+                <div class="filter-range-labels">
+                    <span>0 €</span>
+                    <span id="prix-label">{{ filters.prix_max is not null ? filters.prix_max : 10 }} €</span>
+                </div>
+            </div>
+
+            {# NOTE #}
+            <div>
+                <h3>Note</h3>
+                <div class="flex flex-col">
+                    {% for i in 5..1 %}
+                        <label class="filter-star">
+                            <input type="radio" name="note" value="{{ i }}"
+                                   {% if filters.note == (i) %}checked{% endif %}>
+                            <span>
+                        {% for star in 1..5 %}
+                            {% if star <= i %}
+                                <i class="fa-solid fa-star text-secondary"></i>
+                            {% else %}
+                                <i class="fa-regular fa-star text-secondary"></i>
+                            {% endif %}
+                        {% endfor %}
+                    </span>
+                        </label>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <button type="submit" class="btn-primary w-full">Filtrer</button>
+            <a href="{{ path('flan') }}" class="text-center text-secondary text-sm underline">Réinitialiser</a>
+
+        </form>
+
+        {# LISTE DES FLANS #}
+        <div class="grid grid-cols-2 gap-8 flex-1">
             {% for flan in flans %}
                 {{ include('components/_cardFlan.html.twig') }}
+            {% else %}
+                <p class="text-secondary col-span-2">Aucun flan ne correspond à vos critères.</p>
             {% endfor %}
         </div>
+
     </section>
 
-
-    {# SECTION MEMBER #}
     {{ include('components/_member.html.twig') }}
 
 {% endblock %}
