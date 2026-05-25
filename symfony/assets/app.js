@@ -8,22 +8,22 @@ import './stimulus_bootstrap.js';
 import './styles/app.css';
 
 /* PAGE CSS */
-import './styles/home.css';
-import './styles/register.css';
-import './styles/login.css'
-import './styles/profile.css'
-import './styles/spot.css'
-import './styles/flan.css'
-import './styles/aboutUs.css'
-import './styles/detailFlan.css'
-import './styles/detailSpot.css'
+import './styles/pages/home.css';
+import './styles/pages/register.css';
+import './styles/pages/login.css'
+import './styles/pages/profile.css'
+import './styles/pages/spot.css'
+import './styles/pages/flan.css'
+import './styles/pages/aboutUs.css'
+import './styles/pages/detailFlan.css'
+import './styles/pages/detailSpot.css'
 
 /* COMPONENTS CSS */
-import './styles/_header.css';
-import './styles/_footer.css';
-import './styles/_cardSpot.css';
-import './styles/_cardFlan.css';
-import './styles/_cardCity.css';
+import './styles/components/_header.css';
+import './styles/components/_footer.css';
+import './styles/components/_cardSpot.css';
+import './styles/components/_cardFlan.css';
+import './styles/components/_cardCity.css';
 
 /* SCRIPT JS */
 import starRating from './scripts/starRating.js';

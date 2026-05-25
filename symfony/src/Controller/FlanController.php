@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Flan;
 use App\Entity\Review;
 use App\Form\ReviewFormType;
+use App\Repository\CityRepository;
 use App\Repository\FlanRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,13 +16,30 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/flan')]
 final class FlanController extends AbstractController
 {
-    #[Route('/', name: 'flan')]
-    public function index(FlanRepository $flanRepository): Response
+    #[Route('/', name: 'flan', methods: ['GET'])]
+    public function index(Request $request, FlanRepository $flanRepository, CityRepository $cityRepository): Response
     {
-        $flan = $flanRepository->findAll();
+        //Filtre flans
+        $filters = [
+            'ville' => $request->query->get('ville'),
+            'prix_max' => $request->query->get('prix_max'),
+            'note' => $request->query->get('note'),
+            'tri' => $request->query->all('tri'),
+        ];
+
+        // Si au moins un filtre est renseigné, on filtre. Sinon, on prend tout.
+        $hasFilters = array_filter($filters, fn($value) => $value !== null && $value !== '');
+
+        $flans = $hasFilters
+            ? $flanRepository->findbyFilters($filters)
+            : $flanRepository->findAll();
+
+        $cities = $cityRepository->findAll();
 
         return $this->render('flan/index.html.twig', [
-            'flans' => $flan
+            'flans' => $flans,
+            'filters' => $filters,
+            'cities' => $cities,
         ]);
     }
 
@@ -74,7 +92,4 @@ final class FlanController extends AbstractController
 
         return $this->redirectToRoute('flan');
     }
-
-    //filtre flans
-
 }

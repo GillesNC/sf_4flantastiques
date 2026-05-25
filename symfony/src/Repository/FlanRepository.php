@@ -22,18 +22,20 @@ class FlanRepository extends ServiceEntityRepository
         $queryBuilder = $this->createQueryBuilder('f');
 
         if (!empty($filters['ville'])) {
-            $queryBuilder->andWhere('f.city = :ville')
+            $queryBuilder->join('f.spot', 's')
+                ->join('s.city', 'c')
+                ->andWhere('c.id = :ville')
                 ->setParameter('ville', $filters['ville']);
         }
 
-        if (!empty($filters['prix_max'])) {
+        if (!empty($filters['prix_max']) && $filters['prix_max'] < 10) {
             $queryBuilder->andWhere('f.price <= :prix_max')
                 ->setParameter('prix_max', $filters['prix_max']);
         }
 
-        if (!empty($filters['note_min'])) {
-            $queryBuilder->andWhere('f.avgScore >= :note_min')
-                ->setParameter('note_min', $filters['note_min']);
+        if (!empty($filters['note'])) {
+            $queryBuilder->andWhere('f.avgScore = :note')
+                ->setParameter('note', $filters['note']);
         }
 
         if (!empty($filters['tri']) && $filters['tri'] === 'nouveaute') {
@@ -41,7 +43,7 @@ class FlanRepository extends ServiceEntityRepository
         }
 
         $queryBuilder->andWhere('f.status = :status')
-            ->setParameter('status', 'published');
+            ->setParameter('status', 'Publié');
 
         return $queryBuilder->getQuery()->getResult();
     }

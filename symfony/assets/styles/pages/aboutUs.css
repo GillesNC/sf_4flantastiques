@@ -1,5 +1,5 @@
 .hero-aboutUs {
-    background-image: url('../images/aboutUs.webp');
+    background-image: url('../../images/aboutUs.webp');
     background-size: cover;
     background-position: center;
     width: 100%;
@@ -8,7 +8,7 @@
 }
 
 .story{
-    background-image: url('../images/footer.svg');
+    background-image: url('../../images/footer.svg');
     background-size: cover;
     background-position: bottom;
     color: var(--color-light);
@@ -28,7 +28,7 @@
 }
 
 .mission-shape {
-    background-image: url('../images/Shape2.svg');
+    background-image: url('../../images/Shape2.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
