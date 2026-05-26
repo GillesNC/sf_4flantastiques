@@ -1,9 +1,12 @@
-.mascotte{
+.mascotte {
     background-image: url('../../images/Shape.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .discover {
@@ -16,4 +19,107 @@
 .title-flan {
     border-radius: 10px;
     padding: 30px;
+}
+
+@media (max-width: 767px) {
+    .hero {
+        flex-direction: column;
+        margin: 24px 16px !important;
+        gap: 16px;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+
+    .hero p {
+        text-align: center;
+    }
+
+    .hero > div:first-child {
+        align-items: center;
+    }
+
+    .hero > div:first-child .flex {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .hero > div:first-child .flex a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .mascotte {
+        max-width: 280px;
+        margin: 0 auto;
+    }
+
+    .title-flan {
+        padding: 20px;
+        text-align: center;
+        align-items: center;
+    }
+
+    .title-flan h2 {
+        font-size: 1.5rem;
+    }
+
+    .discover {
+        height: auto !important;
+        min-height: 280px;
+        padding: 40px 20px;
+    }
+
+    .discover h2 {
+        font-size: 1.5rem;
+    }
+
+    .discover p {
+        font-size: 0.9rem;
+        padding: 0 8px;
+    }
+
+    .city {
+        margin: 30px 16px !important;
+    }
+
+    .city > div:first-child {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .city h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0 !important;
+    }
+
+    section.hero .mascotte {
+        order: -1;
+    }
+
+    .blog {
+        height: auto !important;
+        min-height: 320px;
+        padding: 48px 20px 100px;
+    }
+
+    .blog h2 {
+        font-size: 1.5rem;
+    }
+
+    .blog p {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        font-size: 0.9rem;
+    }
+
+    .blog img.absolute {
+        width: 160px;
+        bottom: -40px;
+        right: 0;
+    }
 }

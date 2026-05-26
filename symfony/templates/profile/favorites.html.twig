@@ -8,7 +8,29 @@
         <h1 class="text-secondary">Mes flans favoris</h1>
         <div class="dashboard grid grid-cols-2 max-w-7xl w-full mx-auto gap-10 mb-50">
             {% include 'components/_dashboard.html.twig' %}
-            <div class="flex flex-col max-w-7xl mx-auto p-10 w-full bg-primary lg:mx-auto">
+
+            <div class="flex flex-col gap-6">
+                {% for flash_message in app.flashes('success') %}
+                    <div class="bg-green-100 text-green-800 p-4 rounded">
+                        {{ flash_message }}
+                    </div>
+                {% endfor %}
+
+                {% if user.favorites|length > 0 %}
+                    <p class="text-secondary mb-4">
+                        Vous avez {{ user.favorites|length }} flan{{ user.favorites|length > 1 ? 's' : '' }} en favori.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {% for favorite in user.favorites %}
+                            {{ include('components/_cardFlan.html.twig', { flan: favorite.flan }) }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="bg-primary p-10 rounded-xl text-center">
+                        <p class="text-secondary mb-4">Vous n'avez pas encore de flans en favoris.</p>
+                        <a href="{{ path('spot') }}" class="btn-primary">Explorer les flans</a>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </section>

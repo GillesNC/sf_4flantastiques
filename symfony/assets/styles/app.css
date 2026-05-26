@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+
 @theme "global" {
     --font-display: "Winky Sans", sans-serif;
     --font-small: 20px;
@@ -16,6 +17,12 @@
     --color-dark-50: #22222250;
     --color-light: #fffdf5;
     --color-light-50: #fffdf550;
+
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+    --breakpoint-2xl: 1536px;
 }
 
 @layer base {
@@ -26,36 +33,32 @@
     }
 
     h1 {
-        font-size: var(--font-large);
+        font-size: 2rem;
         font-weight: bold;
     }
 
     h2 {
-        font-size: var(--font-large);
+        font-size: 2rem;
         font-weight: 700;
     }
 
     h3 {
-        font-size: var(--font-medium);
+        font-size: 1.5rem;
         font-weight: bold;
     }
 
     p {
-        font-size: var(--font-small);
+        font-size: 1rem;
         font-weight: 500;
     }
 
     a {
         text-decoration: none;
-        font-size: var(--font-small);
+        font-size: 1rem;
     }
 }
 
 @layer components {
-    .my-container {
-        .max-w-7xl,
-        .mx-auto
-    }
 
     .btn-primary {
         background-color: var(--color-tertiary);
@@ -138,21 +141,10 @@
 }
 
 /* MOBILE RESPONSIVE STYLES */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 40px;
-    }
+@media (min-width: 768px) {
 
-    h2 {
-        font-size: 35px;
-    }
-
-    h3 {
-        font-size: 25px;
-    }
-
-    p, a {
-        font-size: 18px;
-    }
-
+    h1 { font-size: var(--font-large); }
+    h2 { font-size: var(--font-large); }
+    h3 { font-size: var(--font-medium); }
+    p, a { font-size: var(--font-small); }
 }

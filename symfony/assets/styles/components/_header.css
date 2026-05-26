@@ -1,11 +1,16 @@
+header {
+    border-radius: 100px;
+}
+
 .menu-item a:hover {
     color: var(--color-secondary);
     text-decoration: none;
 }
 
-#mobile-menu {
-    border: none;
-    outline: none;
+.burger-menu {
+    .fa-bars {
+        color: var(--color-secondary);
+    }
 }
 
 #mobile-menu::backdrop {
